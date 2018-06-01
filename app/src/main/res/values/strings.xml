@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mbrowser</string>
+    <!--   <string name="update_content">更新内容</string>
+       <string name="update_content_text_1_4_1">V1.4.1：\n部分UI修改\n\n</string>
+       <string name="update_content_text_1_4">V1.4：\n提高制作GIF时的兼容性\n\n</string>
+       <string name="update_content_text_1_3_2">V1.3.2：\n部分UI修改\n\n</string>
+       <string name="update_content_text_1_3_1">V1.3.1：\n提高兼容性\n\n</string>
+       <string name="update_content_text_1_3">V1.3：\n自定义使用的文件夹\n临时文件控制\n可设置是否自动读取剪贴板中的链接\n部分UI修改\n\n</string>
+       <string name="update_content_text_1_2_1">V1.2.1：\n修正生成的GIF不会出现在图库中的问题\n修正自动填写URL有时导致崩溃的问题\n\n</string>
+       <string name="update_content_text_1_2">V1.2：\n自动读取剪贴板中的链接\n增加了使用PixivID查找图片\n部分UI修改\n\n</string>
+       -->
+    <string name="update_content_text_1_1">V1.1：\n可以多线程下载并显示进度\n</string>
+    <string name="load_default">默认方式</string>
+    <string name="load_normal">通常方式</string>
+    <string name="load_cache_else_network">优先加载缓存</string>
+    <string name="load_no_cache">不加载缓存</string>
+    <string name="load_cache_only">仅加载缓存</string>
+    <string name="by_user">自定义</string>
+
+    <string name="default_value">默认</string>
+    <string name="inline_preferences">In-line preferences</string>
+    <string name="title_checkbox_preference">Checkbox preference</string>
+    <string name="summary_checkbox_preference">This is a checkbox</string>
+    <string name="title_parent_preference">Parent checkbox preference</string>
+    <string name="summary_parent_preference">This is visually a parent</string>
+    <string name="title_child_preference">Child checkbox preference</string>
+    <string name="summary_child_preference">This is visually a child</string>
+    <string name="title_intent_preference">Intent preference</string>
+    <string name="summary_intent_preference">Launches an Activity from an Intent</string>
+    <string name="title_next_screen_toggle_preference">Toggle preference</string>
+    <string name="summary_next_screen_toggle_preference">Preference that is on the next screen but same hierarchy</string>
+    <string name="title_screen_preference">Screen preference</string>
+    <string name="summary_screen_preference">Shows another screen of preferences</string>
+    <string name="launch_preferences">Launch preferences</string>
+    <string name="preference_attributes">Preference attributes</string>
+    <string name="summary_edittext_preference">An example that uses an edit text dialog</string>
+    <string name="dialog_title_edittext_preference">Enter your favorite animal</string>
+    <string name="title_edittext_preference">Edit text preference</string>
+    <string name="dialog_based_preferences">Dialog-based preferences</string>
+
+</resources>

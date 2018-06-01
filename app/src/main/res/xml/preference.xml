@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="这些设置可能需要重启">
+    <PreferenceScreen
+        android:key="webviewSettings"
+        android:title="基本"
+        android:layout_width="match_parent">
+        <EditTextPreference
+            android:hint="如果清空，则会在重启时恢复默认路径"
+            android:key="mainPage"
+            android:summary="重启软件时该项设置生效"
+            android:title="主页网址" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:key="webviewSettings"
+        android:summary="修改这些将会影响网页显示"
+        android:title="自定义">
+        <CheckBoxPreference
+            android:key="useJavaScript"
+            android:summary="启用JavaScript"
+            android:title="JavaScript" />
+
+
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="webviewSettings"
+        android:summary="修改这些将会影响接收到的数据"
+        android:title="高级">
+
+        <ListPreference
+            android:dialogTitle="使用方式"
+            android:entries="@array/cache_mode_list"
+            android:entryValues="@array/cache_mode_list_entry"
+            android:defaultValue="0"
+            android:key="cacheMode"
+            android:title="缓存利用模式" />
+        <ListPreference
+            android:dialogTitle="选择浏览器标识"
+            android:entries="@array/ua_list"
+            android:entryValues="@array/ua_list_entry"
+            android:defaultValue="default_value"
+            android:key="userAgentList"
+            android:title="浏览器标识" />
+        <EditTextPreference
+            android:hint="自定义UA"
+            android:key="userAgent"
+            android:summary="重启软件时该项设置生效"
+            android:title="自定义User Agent" />
+    </PreferenceScreen>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="其他">
+
+        <Preference
+            android:key="cleanTmpFilesNow"
+            android:title="立即清除所有临时文件" />
+        <Preference android:title="更新内容">
+            <intent
+                android:targetClass="com.meng.mbrowser.newVersion"
+                android:targetPackage="com.meng.mbrowser" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

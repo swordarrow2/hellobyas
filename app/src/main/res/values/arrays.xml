@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ua_list">
+        <item>@string/default_value</item>
+        <item>Internet Explorer 11</item>
+        <item>Safari</item>
+        <item>Mozilla FireFox 52.0</item>
+        <item>@string/by_user</item>
+    </string-array>
+    <string-array name="ua_list_entry">
+        <item>default_value</item>
+        <item>Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko</item>
+        <item>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2</item>
+        <item>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0</item>
+        <item>by_user</item>
+    </string-array>
+
+    <string-array name="cache_mode_list">
+        <item>@string/load_default</item>
+        <item>@string/load_normal</item>
+        <item>@string/load_cache_else_network</item>
+        <item>@string/load_no_cache</item>
+        <item>@string/load_cache_only</item>
+    </string-array>
+    <string-array name="cache_mode_list_entry">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+</resources>

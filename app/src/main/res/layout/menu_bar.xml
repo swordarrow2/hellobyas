@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+	
+	<HorizontalScrollView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal" >
+			
+			<Button
+				android:text="exit"
+				android:id="@+id/menu_barButton1_exit"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:text="settings"
+				android:id="@+id/menu_barButton2_settings"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:text="test"
+				android:id="@+id/menu_barButton3_test"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:text="localhost"
+				android:id="@+id/menu_barButton4_localhost"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:text="histort"
+				android:id="@+id/menu_barButton5_history"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:id="@+id/menu_barButton6"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:id="@+id/menu_barButton7"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+			<Button
+				android:id="@+id/menu_barButton8"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />
+			
+		</LinearLayout>
+	</HorizontalScrollView>
+	
+	<HorizontalScrollView
+		android:visibility="gone"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal" >
+		</LinearLayout>
+	</HorizontalScrollView>
+	
+</LinearLayout>
