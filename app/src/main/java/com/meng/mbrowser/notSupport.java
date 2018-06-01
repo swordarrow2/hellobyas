@@ -4,7 +4,7 @@ import android.app.*;
 import android.os.*;
 import android.widget.*;
 
-public class NoSupportCPU extends Activity{
+public class notSupport extends Activity{
 
     @Override
     public void onCreate(Bundle savedInstanceState){

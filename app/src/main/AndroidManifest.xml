@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.meng.mbrowser">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -10,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.NoActionBar">
-        <activity android:name=".StartActivity">
+        <activity android:name=".checkSystem">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,11 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".NoSupportCPU"
+        <activity android:name=".notSupport"
             android:configChanges="keyboardHidden|orientation"/>
         <activity android:name=".preferenceActivity" android:theme="@android:style/Theme.Holo"/>
 		<activity android:name=".tools.p2"/>
 		<activity android:name=".historyView"/>
+   <activity android:name=".collectionView"/>
         <activity android:name=".newVersion" android:theme="@android:style/Theme.Holo.Dialog"/>
     </application>
 

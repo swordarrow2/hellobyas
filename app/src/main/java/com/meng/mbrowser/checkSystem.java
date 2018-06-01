@@ -5,7 +5,7 @@ import android.content.*;
 import android.os.*;
 
 
-public class StartActivity extends Activity{
+public class checkSystem extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){

@@ -1,87 +1,91 @@
 package com.meng.mbrowser.tools;
 
-import android.content.*;
 import android.content.res.*;
-import android.widget.*;
-
 import java.io.*;
-
 import org.xmlpull.v1.*;
 
-public class xmlParser {
-    Context c;
-    int i = 0;
-    static String xmlPath = "/storage/emulated/0/mFramework.xml";
+public class xmlParser{
+    String[] values;
     boolean parsered = false;
-
-    public xmlParser(Context context) {
-        c = context;
+	String xmlPath;
+	String tagName;
+    public xmlParser(String path,String tag){
+        xmlPath=path;
+		tagName=tag;
     }
 
-    public int getXmlLength() {
-        run();
-        return i;
+    public int getXmlLength() throws Exception{
+        return parse(false);
     }
 
-    public boolean isParsedSeccuss() {
+	public String[] parseXml() throws Exception{	
+		values=new String[getXmlLength()];
+		parse(true);
+		return values;
+	}
+
+    public boolean isParsedSeccuss(){
         return parsered;
     }
+	
+	/*
 
-    public void startParse() {
-        parsered = false;
+    private void startParse(){
+        parsered=false;
         Thread t = new parseXml();
         t.start();
     }
 
-    class parseXml extends Thread {
+    class parseXml extends Thread{
         @Override
-        public void run() {
-            i = 0;
-            try {
+        public void run(){
+            xmlLen=0;
+            try{
                 File xmlFile = new File(xmlPath);
                 InputStream is = new FileInputStream(xmlFile);
                 XmlPullParserFactory fac = XmlPullParserFactory.newInstance();
                 XmlPullParser xrp = fac.newPullParser();
-                xrp.setInput(is, "utf-8");
-                while (xrp.getEventType() != XmlResourceParser.END_DOCUMENT) {
-                    if (xrp.getEventType() == XmlResourceParser.START_TAG) {
+                xrp.setInput(is,"utf-8");
+                while(xrp.getEventType()!=XmlResourceParser.END_DOCUMENT){
+                    if(xrp.getEventType()==XmlResourceParser.START_TAG){
                         String tagName = xrp.getName();
-                        if (tagName.equals("path")) {
-                         //   MainActivity.dexPaths[i] = xrp.getAttributeValue(0);
-                            i++;
+                        if(tagName.equals("history")){
+							//          MainActivity.dexPaths[i] = xrp.getAttributeValue(0);
+                            xmlLen++;
                         }
                     }
                     xrp.next();
                 }
-            } catch (Exception e) {
-                Toast.makeText(c, e.toString(), Toast.LENGTH_SHORT).show();
+            }catch(Exception e){
+                
             }
-            parsered = true;
+            parsered=true;
         }
     }
+	*/
 
-    public void run() {
-        try {
+    private int parse(boolean b) throws Exception{
+		int len=0;
+		int i=0;
             File xmlFile = new File(xmlPath);
-            if (!xmlFile.exists()){
-        //        fileTools.saveTextFile("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<paths>\n</paths>",xmlPath);
-            }
             InputStream is = new FileInputStream(xmlFile);
             XmlPullParserFactory fac = XmlPullParserFactory.newInstance();
             XmlPullParser xrp = fac.newPullParser();
-            xrp.setInput(is, "utf-8");
-            while (xrp.getEventType() != XmlResourceParser.END_DOCUMENT) {
-                if (xrp.getEventType() == XmlResourceParser.START_TAG) {
-                    if (xrp.getName().equals("path")) {
-                        i++;
+            xrp.setInput(is,"utf-8");
+            while(xrp.getEventType()!=XmlResourceParser.END_DOCUMENT){
+                if(xrp.getEventType()==XmlResourceParser.START_TAG){
+                    if(xrp.getName().equals(tagName)){
+						if(b){
+							values[i]=xrp.getAttributeValue(0);
+							i++;
+						}else{
+							len++;
+						}
                     }
                 }
                 xrp.next();
             }
-        } catch (Exception e) {
-            Toast.makeText(c, e.toString(), Toast.LENGTH_SHORT).show();
-        }
-
+		return len;
     }
 
 }

@@ -9,7 +9,7 @@ public class MWebChromeClient extends WebChromeClient
 	@Override
 	public boolean onJsAlert(WebView view,String url,String message,final JsResult result){
 		AlertDialog.Builder b = new AlertDialog.Builder(view.getContext());
-		b.setTitle("来自"+MainActivity.webView.getTitle()+"的提示");
+		b.setTitle("来自"+MainActivity.instence.webView.getTitle()+"的提示");
 		b.setMessage(message);
 		b.setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener() {
 				@Override
@@ -24,7 +24,7 @@ public class MWebChromeClient extends WebChromeClient
 
 	@Override
 	public void onProgressChanged(WebView view,int newProgress){
-		MainActivity.topBar.setProgress(newProgress);
+		MainActivity.instence.topBar.setProgress(newProgress);
 	}
 
 }

@@ -7,18 +7,22 @@ import android.os.*;
 import android.view.*;
 import android.webkit.*;
 import android.widget.*;
+import com.meng.mbrowser.history.*;
 import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;
+import com.meng.mbrowser.collection.*;
+import java.io.*;
 
 public class MainActivity extends Activity{
-
-    public static TopBar topBar;
-    public static MenuBar menuBar;
-    public static BottomBar bottomBar;
-    public static sharedPreferenceHelper sharedPreference;
-    public static WebView webView;
-
+	public static MainActivity instence;
+    public TopBar topBar;
+    public MenuBar menuBar;
+    public BottomBar bottomBar;
+    public sharedPreferenceHelper sharedPreference;
+    public WebView webView;
+	public historyTool ht;
+	public collectionTool ct;
     long exitTime;
 
     @Override
@@ -26,6 +30,7 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+		instence=this;
     }
 
     private void init(){
@@ -36,10 +41,15 @@ public class MainActivity extends Activity{
         if(sharedPreference.getValue(Data.preferenceKey.mainPage)==null||sharedPreference.getValue(Data.preferenceKey.mainPage).equals("")){
             sharedPreference.putValue(Data.preferenceKey.mainPage,"http://swordarrow2.github.io");
         }
+		try{
+			ht=new historyTool(this);
+			ct=new collectionTool(this);
+		}catch(IOException e){}	
         topBar=(TopBar) findViewById(R.id.topBar);
         menuBar=(MenuBar) findViewById(R.id.menuBar);
         bottomBar=(BottomBar) findViewById(R.id.bottomBar);
         topBar.setUrl("https://github.com/cn-s3bit/TH902");
+	//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
         webView=(WebView) findViewById(R.id.main_webView);
         topBar.setOnClickListener(onClickListener);
         bottomBar.setOnClickListener(onClickListener);
@@ -67,13 +77,13 @@ public class MainActivity extends Activity{
 				public void onDownloadStart(String p1,String p2,String p3,String p4,long p5){
 					// TODO: Implement this method
 					showToast(p1+"  "+p2+"   "+p3+"  "+p4+"  "+p5);
-				
-					
+
+
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.addCategory(Intent.CATEGORY_BROWSABLE);
 					intent.setData(Uri.parse(p1));
 					startActivity(intent);
-				
+
 				}
 			});
         webView.setWebViewClient(new MWebViewClient());
@@ -131,7 +141,7 @@ public class MainActivity extends Activity{
     }
 
     public void showToast(Object o){
-        Toast.makeText(getApplicationContext(),o.toString(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,o.toString(),Toast.LENGTH_SHORT).show();
     }
 
 	@Override
@@ -142,7 +152,6 @@ public class MainActivity extends Activity{
                 if((System.currentTimeMillis()-exitTime)>2000){
                     Toast.makeText(getApplicationContext(),"再按一次退出程序",Toast.LENGTH_SHORT).show();
                     exitTime=System.currentTimeMillis();
-					
                 }else{
                     finish();
                 }
@@ -151,7 +160,7 @@ public class MainActivity extends Activity{
 		return true;
 	}
 
-  
+
 
     private String getUA(){
         String data = sharedPreference.getValue(Data.preferenceKey.userAgentList,"default_value");
@@ -163,4 +172,14 @@ public class MainActivity extends Activity{
         }
         return data;
     }
+
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		// TODO: Implement this method
+		if(resultCode==RESULT_OK&&requestCode==55){
+			webView.loadUrl(data.getStringExtra("url"));
+		}
+
+	}
+
 }
