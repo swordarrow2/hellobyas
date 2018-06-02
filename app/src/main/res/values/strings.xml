@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mbrowser</string>
-    <!--   <string name="update_content">更新内容</string>
-       <string name="update_content_text_1_4_1">V1.4.1：\n部分UI修改\n\n</string>
-       <string name="update_content_text_1_4">V1.4：\n提高制作GIF时的兼容性\n\n</string>
-       <string name="update_content_text_1_3_2">V1.3.2：\n部分UI修改\n\n</string>
-       <string name="update_content_text_1_3_1">V1.3.1：\n提高兼容性\n\n</string>
-       <string name="update_content_text_1_3">V1.3：\n自定义使用的文件夹\n临时文件控制\n可设置是否自动读取剪贴板中的链接\n部分UI修改\n\n</string>
-       <string name="update_content_text_1_2_1">V1.2.1：\n修正生成的GIF不会出现在图库中的问题\n修正自动填写URL有时导致崩溃的问题\n\n</string>
-       <string name="update_content_text_1_2">V1.2：\n自动读取剪贴板中的链接\n增加了使用PixivID查找图片\n部分UI修改\n\n</string>
-       -->
-    <string name="update_content_text_1_1">V1.1：\n可以多线程下载并显示进度\n</string>
+    <string name="update_content">更新内容</string>
+    <string name="update_content_text_2_0">V2.0：\n合并历史记录与收藏网址的Activity\n\n</string>
+    <string name="update_content_text_1_9_1">V1.9.1：\n修正收藏网址读取错误的问题\n修正User Agent选项无法使用的问题\n\n</string>
+    <string name="update_content_text_1_9">V1.9：\n历史记录与收藏网址\n\n</string>
+    <string name="update_content_text_1_8">V1.8：\n添加清除临时文件功能\n\n</string>
+    <string name="update_content_text_1_7">V1.7：\n添加User Agent设置\n添加如何使用缓存的选项\n\n</string>
+    <string name="update_content_text_1_6">V1.6：\n添加默认主页设置\n\n</string>
+    <string name="update_content_text_1_5">V1.5：\n设置界面\n\n</string>
+    <string name="update_content_text_1_4">V1.4：\n控制按钮放入底部导航栏\n网址输入放入顶部导航栏\n\n</string>
+    <string name="update_content_text_1_3">V1.3：\n添加了几个控制按钮\n\n</string>
+    <string name="update_content_text_1_2">V1.2：\n启动时预留的Activity\n\n</string>
+    <string name="update_content_text_1_1">V1.1：\n仅查看网页的功能\n</string>
     <string name="load_default">默认方式</string>
     <string name="load_normal">通常方式</string>
     <string name="load_cache_else_network">优先加载缓存</string>

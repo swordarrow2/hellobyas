@@ -28,11 +28,11 @@ public class preferenceActivity extends PreferenceActivity{
 		uaList=(ListPreference) findPreference(Data.preferenceKey.userAgentList);
 		clean=findPreference(Data.preferenceKey.cleanTmpFilesNow);
 		uaInput=(EditTextPreference) findPreference(Data.preferenceKey.userAgent);
-		uaInput.setEnabled(uaList.getValue().equals("user"));
+		uaInput.setEnabled(uaList.getValue().equals("by_user"));
 		uaList.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 				@Override
 				public boolean onPreferenceChange(Preference preference,Object o){
-					uaInput.setEnabled(o.toString().equals("user"));
+					uaInput.setEnabled(o.toString().equals("by_user"));
 					return true;
 				}
 			});

@@ -26,8 +26,7 @@
             android:configChanges="keyboardHidden|orientation"/>
         <activity android:name=".preferenceActivity" android:theme="@android:style/Theme.Holo"/>
 		<activity android:name=".tools.p2"/>
-		<activity android:name=".historyView"/>
-   <activity android:name=".collectionView"/>
+		<activity android:name=".historyAndCollectionView"/>
         <activity android:name=".newVersion" android:theme="@android:style/Theme.Holo.Dialog"/>
     </application>
 

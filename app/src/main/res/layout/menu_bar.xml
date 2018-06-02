@@ -30,13 +30,14 @@
 				android:layout_width="wrap_content" />
 			
 			<Button
-				android:text="add"
-				android:id="@+id/menu_barButton6_add"
+				android:text="addToCollection"
+				android:id="@+id/menu_barButton6_addToCollection"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content" />
 			
 			<Button
 				android:text="delete"
+				android:visibility="gone"
 				android:id="@+id/menu_barButton7_delete"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content" />

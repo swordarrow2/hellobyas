@@ -6,12 +6,12 @@ import com.meng.mbrowser.tools.*;
 import java.io.*;
 import org.apache.http.util.*;
 
-public class collectionTool{
+public class CollectionTool {
 	Context context;
 	private String collectionFilePath="/data/data/com.meng.mbrowser/collection.xml";
 	String collectionText="";
 	xmlParser xmlparser;
-	public collectionTool(Context c) throws IOException{
+	public CollectionTool(Context c) throws IOException{
 		context=c;
 		collectionText=tool.readTextFile(collectionFilePath,"collections");
 		xmlparser=new xmlParser(collectionFilePath,"collection");

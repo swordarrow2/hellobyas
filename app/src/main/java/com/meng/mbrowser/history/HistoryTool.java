@@ -6,12 +6,12 @@ import com.meng.mbrowser.tools.*;
 import java.io.*;
 import org.apache.http.util.*;
 
-public class historyTool{
+public class HistoryTool {
 	Context context;
 	private String historyFilePath="/data/data/com.meng.mbrowser/history.xml";
 	String historyText="";
 	xmlParser xmlparser;
-	public historyTool(Context c) throws IOException{
+	public HistoryTool(Context c) throws IOException{
 		context=c;
 		historyText=tool.readTextFile(historyFilePath,"historys");
 		xmlparser=new xmlParser(historyFilePath,"history");

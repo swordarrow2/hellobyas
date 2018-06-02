@@ -10,10 +10,9 @@ public class notSupport extends Activity{
     public void onCreate(Bundle savedInstanceState){
         // TODO: Implement this method
         super.onCreate(savedInstanceState);
-		//     setTheme(R.style.ErrorTheme);
         setContentView(R.layout.nosupportcpu);
         TextView tv=new TextView(this);
-        tv.setText(Build.CPU_ABI);
+        tv.setText("不支持此设备");
         setContentView(tv);
     }
 }

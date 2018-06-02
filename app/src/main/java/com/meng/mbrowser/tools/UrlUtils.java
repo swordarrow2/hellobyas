@@ -30,12 +30,12 @@ public class UrlUtils {
 
     static final Pattern ACCEPTED_URI_SCHEMA = Pattern.compile(
             "(?i)" + // switch on case insensitive matching
-            "(" +    // begin group for schema
-            "(?:http|https|file):\\/\\/" +
-            "|(?:data|about|javascript):" +
-            "|(?:.*:.*@)" +
-            ")" +
-            "(.*)" );
+                    "(" +    // begin group for schema
+                    "(?:http|https|file):\\/\\/" +
+                    "|(?:data|about|javascript):" +
+                    "|(?:.*:.*@)" +
+                    ")" +
+                    "(.*)");
 
     // Google search
     private final static String QUICKSEARCH_G = "http://www.google.com/m?q=%s";
@@ -52,12 +52,12 @@ public class UrlUtils {
      * Strips the provided url of preceding "http://" and any trailing "/". Does not
      * strip "https://". If the provided string cannot be stripped, the original string
      * is returned.
-     *
+     * <p>
      * TODO: Put this in TextUtils to be used by other packages doing something similar.
      *
      * @param url a url to strip, like "http://www.google.com/"
      * @return a stripped url like "www.google.com", or the original string if it could
-     *         not be stripped
+     * not be stripped
      */
     public static String stripUrl(String url) {
         if (url == null) return null;
@@ -79,12 +79,11 @@ public class UrlUtils {
     /**
      * Attempts to determine whether user input is a URL or search
      * terms.  Anything with a space is passed to search.
-     *
+     * <p>
      * Converts to lowercase any mistakenly uppercased schema (i.e.,
      * "Http://" converts to "http://"
      *
      * @return Original or modified URL
-     *
      */
     public static String smartUrlFilter(String url) {
         return smartUrlFilter(url, true);
@@ -93,14 +92,13 @@ public class UrlUtils {
     /**
      * Attempts to determine whether user input is a URL or search
      * terms.  Anything with a space is passed to search if canBeSearch is true.
-     *
+     * <p>
      * Converts to lowercase any mistakenly uppercased schema (i.e.,
      * "Http://" converts to "http://"
      *
      * @param canBeSearch If true, will return a search url if it isn't a valid
      *                    URL. If false, invalid URLs will return null
      * @return Original or modified URL
-     *
      */
     public static String smartUrlFilter(String url, boolean canBeSearch) {
         String inUrl = url.trim();
@@ -131,7 +129,8 @@ public class UrlUtils {
         return null;
     }
 
-    /* package */ static String fixUrl(String inUrl) {
+    /* package */
+    static String fixUrl(String inUrl) {
         // FIXME: Converting the url to lower case
         // duplicates functionality in smartUrlFilter().
         // However, changing all current callers of fixUrl to
@@ -162,7 +161,8 @@ public class UrlUtils {
     }
 
     // Returns the filtered URL. Cannot return null, but can return an empty string
-    /* package */ static String filteredUrl(String inUrl) {
+    /* package */
+    static String filteredUrl(String inUrl) {
         if (inUrl == null) {
             return "";
         }

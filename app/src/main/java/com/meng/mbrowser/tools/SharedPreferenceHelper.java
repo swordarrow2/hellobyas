@@ -7,13 +7,13 @@ import android.content.SharedPreferences;
  * Created by Administrator on 2018/3/13.
  */
 
-public class sharedPreferenceHelper{
+public class SharedPreferenceHelper {
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private Context context;
 
-    public sharedPreferenceHelper(Context c,String name){
+    public SharedPreferenceHelper(Context c, String name){
         context=c;
         sp=context.getSharedPreferences(name,0);
         editor=sp.edit();

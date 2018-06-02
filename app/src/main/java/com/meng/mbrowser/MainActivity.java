@@ -19,10 +19,10 @@ public class MainActivity extends Activity{
     public TopBar topBar;
     public MenuBar menuBar;
     public BottomBar bottomBar;
-    public sharedPreferenceHelper sharedPreference;
+    public SharedPreferenceHelper sharedPreference;
     public WebView webView;
-	public historyTool ht;
-	public collectionTool ct;
+	public HistoryTool historyTool;
+	public CollectionTool collectionTool;
     long exitTime;
 
     @Override
@@ -34,7 +34,7 @@ public class MainActivity extends Activity{
     }
 
     private void init(){
-        sharedPreference=new sharedPreferenceHelper(this,Data.preferenceKey.mainPreferenceName);
+        sharedPreference=new SharedPreferenceHelper(this,Data.preferenceKey.mainPreferenceName);
         if(sharedPreference.getValue(Data.preferenceKey.cookieValue)==null){
             sharedPreference.putValue(Data.preferenceKey.cookieValue,"null");
         }
@@ -42,8 +42,8 @@ public class MainActivity extends Activity{
             sharedPreference.putValue(Data.preferenceKey.mainPage,"http://swordarrow2.github.io");
         }
 		try{
-			ht=new historyTool(this);
-			ct=new collectionTool(this);
+			historyTool =new HistoryTool(this);
+			collectionTool =new CollectionTool(this);
 		}catch(IOException e){}	
         topBar=(TopBar) findViewById(R.id.topBar);
         menuBar=(MenuBar) findViewById(R.id.menuBar);
@@ -90,6 +90,7 @@ public class MainActivity extends Activity{
 
 
         webView.setWebChromeClient(new MWebChromeClient());
+        webView.loadUrl(topBar.getUrl());
         //   webView.loadUrl("file:///android_asset/javascript.html");	
     }
 
