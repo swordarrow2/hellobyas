@@ -8,6 +8,11 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal" >
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/top_barTextView"
+			android:visibility="gone" />
 		<EditText
 			android:inputType="text"
 			android:lines="1"

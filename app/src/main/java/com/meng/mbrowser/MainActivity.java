@@ -13,6 +13,7 @@ import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;
 import com.meng.mbrowser.collection.*;
 import java.io.*;
+import android.view.View.*;
 
 public class MainActivity extends Activity{
 	public static MainActivity instence;
@@ -71,6 +72,15 @@ public class MainActivity extends Activity{
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollbarOverlay(true);
+		webView.setOnTouchListener(new OnTouchListener(){
+
+				@Override
+				public boolean onTouch(View p1,MotionEvent p2){
+					// TODO: Implement this method
+					menuBar.setVisibility(View.GONE);
+					return false;
+				}
+			});
 		webView.setDownloadListener(new DownloadListener(){
 
 				@Override
