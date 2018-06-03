@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">Mbrowser</string>
     <string name="update_content">更新内容</string>
+	<string name="update_content_text_2_2">V2.2：\n添加动画效果\n\n</string>
+	<string name="update_content_text_2_1">V2.1：\n顶部导航栏效果优化\n\n</string>
     <string name="update_content_text_2_0">V2.0：\n合并历史记录与收藏网址的Activity\n\n</string>
     <string name="update_content_text_1_9_1">V1.9.1：\n修正收藏网址读取错误的问题\n修正User Agent选项无法使用的问题\n\n</string>
     <string name="update_content_text_1_9">V1.9：\n历史记录与收藏网址\n\n</string>
@@ -9,7 +11,7 @@
     <string name="update_content_text_1_7">V1.7：\n添加User Agent设置\n添加如何使用缓存的选项\n\n</string>
     <string name="update_content_text_1_6">V1.6：\n添加默认主页设置\n\n</string>
     <string name="update_content_text_1_5">V1.5：\n设置界面\n\n</string>
-    <string name="update_content_text_1_4">V1.4：\n控制按钮放入底部导航栏\n网址输入放入顶部导航栏\n\n</string>
+    <string name="update_content_text_1_4">V1.4：\n控制按钮放入底部导航栏\n网址输入放入顶部导航栏\n下载响应\n\n</string>
     <string name="update_content_text_1_3">V1.3：\n添加了几个控制按钮\n\n</string>
     <string name="update_content_text_1_2">V1.2：\n启动时预留的Activity\n\n</string>
     <string name="update_content_text_1_1">V1.1：\n仅查看网页的功能\n</string>

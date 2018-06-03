@@ -1,14 +1,14 @@
 package com.meng.mbrowser.tools;
 
-import android.content.Context;
-import android.os.Build;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-
-import java.io.UnsupportedEncodingException;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.view.animation.*;
+import android.webkit.*;
+import android.widget.*;
+import com.meng.mbrowser.*;
 import java.io.*;
 import org.apache.http.util.*;
-import android.widget.*;
 
 /**
  * Created by Administrator on 2018/5/23.
@@ -88,9 +88,11 @@ public class tool {
             return false;
         }
     }
+	
+	
+	
 	public static void showToast(Context c,Object o){
 		Toast.makeText(c,o.toString(),Toast.LENGTH_SHORT).show();
 	}
-	
 	
 }

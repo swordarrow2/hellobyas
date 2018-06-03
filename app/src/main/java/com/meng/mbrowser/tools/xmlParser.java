@@ -47,6 +47,7 @@ public class xmlParser{
                 }
                 xrp.next();
             }
+		//	values[len]="清除所有条目";
 		return len;
     }
 

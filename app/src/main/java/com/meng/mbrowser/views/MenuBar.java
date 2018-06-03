@@ -3,9 +3,9 @@ package com.meng.mbrowser.views;
 import android.content.*;
 import android.util.*;
 import android.view.*;
+import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
-
 import com.meng.mbrowser.*;
 import com.meng.mbrowser.tools.*;
 
@@ -34,13 +34,10 @@ public class MenuBar extends LinearLayout {
         tbs = new Button[]{
                 t1, t2, t3, t4, t5, t6, t7, t8
         };
-
         for (int i = 0; i < 8; i++) {
             tbs[i] = (Button) findViewById(i1[i]);
             tbs[i].setOnClickListener(onClickListener);
-
         }
-
     }
 
     public void setRelationWebView(WebView webview) {
@@ -88,4 +85,20 @@ public class MenuBar extends LinearLayout {
             }
         }
     };
+
+	@Override
+	public void setVisibility(int visibility){
+		// TODO: Implement this method
+		if(visibility!=getVisibility()){
+			if(visibility==GONE){
+				Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.right_out);
+				startAnimation(animation);
+			}else{
+				Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.left_in);
+				startAnimation(animation);
+			}
+		}	
+		super.setVisibility(visibility);
+	}
+	
 }

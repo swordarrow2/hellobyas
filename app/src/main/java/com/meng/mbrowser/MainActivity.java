@@ -5,15 +5,15 @@ import android.content.*;
 import android.net.*;
 import android.os.*;
 import android.view.*;
+import android.view.View.*;
 import android.webkit.*;
 import android.widget.*;
+import com.meng.mbrowser.collection.*;
 import com.meng.mbrowser.history.*;
 import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;
-import com.meng.mbrowser.collection.*;
 import java.io.*;
-import android.view.View.*;
 
 public class MainActivity extends Activity{
 	public static MainActivity instence;
@@ -43,14 +43,14 @@ public class MainActivity extends Activity{
             sharedPreference.putValue(Data.preferenceKey.mainPage,"http://swordarrow2.github.io");
         }
 		try{
-			historyTool =new HistoryTool(this);
-			collectionTool =new CollectionTool(this);
+			historyTool=new HistoryTool(this);
+			collectionTool=new CollectionTool(this);
 		}catch(IOException e){}	
         topBar=(TopBar) findViewById(R.id.topBar);
         menuBar=(MenuBar) findViewById(R.id.menuBar);
         bottomBar=(BottomBar) findViewById(R.id.bottomBar);
         topBar.setUrl("https://github.com/cn-s3bit/TH902");
-	//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
+		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
         webView=(WebView) findViewById(R.id.main_webView);
         topBar.setOnClickListener(onClickListener);
         bottomBar.setOnClickListener(onClickListener);
@@ -60,7 +60,6 @@ public class MainActivity extends Activity{
 			" AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/44.0.2403.119 Mobile Safari/537.36";
         webView.getSettings().setUserAgentString(getUA());
         webView.getSettings().setCacheMode(Integer.parseInt(sharedPreference.getValue(Data.preferenceKey.cacheMode,"0")));
-
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
@@ -76,8 +75,8 @@ public class MainActivity extends Activity{
 
 				@Override
 				public boolean onTouch(View p1,MotionEvent p2){
-					// TODO: Implement this method
 					menuBar.setVisibility(View.GONE);
+					topBar.setIsEdit(false);
 					return false;
 				}
 			});
@@ -85,20 +84,14 @@ public class MainActivity extends Activity{
 
 				@Override
 				public void onDownloadStart(String p1,String p2,String p3,String p4,long p5){
-					// TODO: Implement this method
 					showToast(p1+"  "+p2+"   "+p3+"  "+p4+"  "+p5);
-
-
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.addCategory(Intent.CATEGORY_BROWSABLE);
 					intent.setData(Uri.parse(p1));
 					startActivity(intent);
-
 				}
 			});
         webView.setWebViewClient(new MWebViewClient());
-
-
         webView.setWebChromeClient(new MWebChromeClient());
         webView.loadUrl(topBar.getUrl());
         //   webView.loadUrl("file:///android_asset/javascript.html");	
@@ -108,6 +101,7 @@ public class MainActivity extends Activity{
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v){
+			topBar.setIsEdit(false);
             switch(v.getId()){
                 case R.id.topBar_ImageButton_goto:
                     String cookie = sharedPreference.getValue(Data.preferenceKey.cookieValue);
@@ -115,6 +109,7 @@ public class MainActivity extends Activity{
                         tool.syncCookie(getApplicationContext(),topBar.getUrl(),cookie);
                     }
                     webView.loadUrl(topBar.getUrl());
+					topBar.setIsEdit(false);
                     break;
                 case R.id.bottomBar_ImageButton_back:
                     goBack();
@@ -157,7 +152,6 @@ public class MainActivity extends Activity{
 
 	@Override
 	public boolean onKeyDown(int keyCode,KeyEvent event){
-		// TODO: Implement this method
 		if(keyCode==KeyEvent.KEYCODE_BACK){
             if(!goBack()){
                 if((System.currentTimeMillis()-exitTime)>2000){
@@ -171,9 +165,13 @@ public class MainActivity extends Activity{
 		return true;
 	}
 
-
-
-    private String getUA(){
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		if(resultCode==RESULT_OK&&requestCode==55){
+			webView.loadUrl(data.getStringExtra("url"));
+		}
+	}
+	private String getUA(){
         String data = sharedPreference.getValue(Data.preferenceKey.userAgentList,"default_value");
         if(data.equals("default_value")){
             return webView.getSettings().getUserAgentString();
@@ -185,12 +183,10 @@ public class MainActivity extends Activity{
     }
 
 	@Override
-	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+	protected void onPause(){
 		// TODO: Implement this method
-		if(resultCode==RESULT_OK&&requestCode==55){
-			webView.loadUrl(data.getStringExtra("url"));
-		}
-
+		menuBar.setVisibility(View.GONE);
+		super.onPause();
 	}
 
 }

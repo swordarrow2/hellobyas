@@ -22,12 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".notSupport"
-            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".notSupport"/>
         <activity android:name=".preferenceActivity" android:theme="@android:style/Theme.Holo"/>
 		<activity android:name=".tools.p2"/>
-		<activity android:name=".historyAndCollectionView"/>
-        <activity android:name=".newVersion" android:theme="@android:style/Theme.Holo.Dialog"/>
+		<activity
+			android:name=".historyAndCollectionView"
+			android:theme="@android:style/Theme.Holo"/>
+        <activity
+			android:name=".newVersion"
+			android:theme="@android:style/Theme.Holo.Dialog"/>
     </application>
 
 </manifest>
