@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Mbrowser</string>
     <string name="update_content">更新内容</string>
+    <string name="update_content_text_2_2_1">V2.2.1：\n收藏内容bug修复\n\n</string>
 	<string name="update_content_text_2_2">V2.2：\n添加动画效果\n\n</string>
 	<string name="update_content_text_2_1">V2.1：\n顶部导航栏效果优化\n\n</string>
     <string name="update_content_text_2_0">V2.0：\n合并历史记录与收藏网址的Activity\n\n</string>

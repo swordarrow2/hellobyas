@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-	<Button
-		android:text="清除"
-        android:id="@+id/history_and_collectionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/historyAndCollectionListView"
-		android:layout_alignParentBottom="true" />
+
 	<ListView
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:id="@+id/historyAndCollectionListView"
 		android:layout_alignParentTop="true" />
-	
-    
-	
-	
+
+	<Button
+		android:visibility="gone"
+		android:id="@+id/history_and_collectionButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:text="清除" />
+
+
 </RelativeLayout>

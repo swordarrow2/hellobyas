@@ -8,8 +8,7 @@ import android.view.*;
 import android.view.View.*;
 import android.webkit.*;
 import android.widget.*;
-import com.meng.mbrowser.collection.*;
-import com.meng.mbrowser.history.*;
+
 import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;

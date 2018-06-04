@@ -1,6 +1,7 @@
-package com.meng.mbrowser.collection;
+package com.meng.mbrowser.tools;
 
 import android.content.*;
+import android.util.Log;
 import android.widget.*;
 import com.meng.mbrowser.tools.*;
 import java.io.*;
@@ -25,9 +26,9 @@ public class CollectionTool {
 	}
 	public String[] getCollection(){
 		try{
-			xmlparser.getXmlLength();
 		return xmlparser.parseXml();
 		}catch(Exception e){
+			Log.e(getClass().getName(),e.toString());
 			return new String[]{"读取出错",e.toString()};
 		}
 	}
@@ -42,7 +43,7 @@ public class CollectionTool {
 		}
 		
 	}*/
-	public void cleanCollection(){
+	public void clean(){
 		collectionText="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<collections>\n</collections>";
 		tool.saveTextFile(collectionFilePath,collectionText);
 	}

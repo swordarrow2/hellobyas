@@ -1,6 +1,7 @@
-package com.meng.mbrowser.history;
+package com.meng.mbrowser.tools;
 
 import android.content.*;
+import android.util.Log;
 import android.widget.*;
 import com.meng.mbrowser.tools.*;
 import java.io.*;
@@ -21,9 +22,9 @@ public class HistoryTool {
 	}
 	public String[] getHistory(){
 		try{
-			xmlparser.getXmlLength();
 			return xmlparser.parseXml();
 		}catch(Exception e){
+			Log.e(getClass().getName(),e.toString());
 			return new String[]{"读取出错",e.toString()};
 		}
 	}
@@ -38,7 +39,7 @@ public class HistoryTool {
 	 }
 
 	 }*/
-	public void cleanHistory(){
+	public void clean(){
 		historyText="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<historys>\n</historys>";
 		tool.saveTextFile(historyFilePath,historyText);
 	}
