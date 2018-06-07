@@ -28,7 +28,7 @@ public class MenuBar extends LinearLayout {
                 R.id.menu_barButton8_collection,
                 R.id.menu_barButton2_settings,
                 R.id.menu_barButton6_addToCollection,
-                R.id.menu_barButton7_delete,
+                R.id.menu_barButton7_viewCode,
                 R.id.menu_barButton1_exit
         };
         tbs = new Button[]{
@@ -74,7 +74,7 @@ public class MenuBar extends LinearLayout {
                         Toast.makeText(c, e.toString(), Toast.LENGTH_SHORT).show();
                     }
                     break;
-                case R.id.menu_barButton7_delete:
+                case R.id.menu_barButton7_viewCode:
                     Intent iViewCode=new Intent(c,viewCode.class);
 					iViewCode.putExtra("url", MainActivity.instence.topBar.getUrl());
 					iViewCode.putExtra("ua",MainActivity.instence.webView.getSettings().getUserAgentString());

@@ -17,14 +17,14 @@
         android:layout_above="@+id/bottomBar"
         android:layout_below="@+id/topBar"
         android:background="@color/colorPrimary" />
-	
-	<com.meng.mbrowser.views.MenuBar
-		android:visibility="gone"
-		android:id="@+id/menuBar"
-		android:layout_above="@+id/bottomBar"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent" />
-	
+
+    <com.meng.mbrowser.views.MenuBar
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomBar"
+        android:visibility="gone" />
+
     <com.meng.mbrowser.views.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
