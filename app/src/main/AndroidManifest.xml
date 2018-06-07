@@ -31,6 +31,10 @@
         <activity
 			android:name=".newVersion"
 			android:theme="@android:style/Theme.Holo.Dialog"/>
+		<activity 
+			android:name=".viewCode"
+			android:theme="@android:style/Theme.Holo"
+			android:label="查看源码" />
     </application>
 
 </manifest>

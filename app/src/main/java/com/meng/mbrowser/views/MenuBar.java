@@ -75,7 +75,10 @@ public class MenuBar extends LinearLayout {
                     }
                     break;
                 case R.id.menu_barButton7_delete:
-                    MainActivity.instence.historyTool.clean();
+                    Intent iViewCode=new Intent(c,viewCode.class);
+					iViewCode.putExtra("url", MainActivity.instence.topBar.getUrl());
+					iViewCode.putExtra("ua",MainActivity.instence.webView.getSettings().getUserAgentString());
+					c.startActivity(iViewCode);
                     break;
                 case R.id.menu_barButton8_collection:
                     Intent i2 = new Intent(c, historyAndCollectionView.class);

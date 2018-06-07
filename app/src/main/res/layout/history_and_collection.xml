@@ -9,7 +9,6 @@
 		android:layout_alignParentTop="true" />
 
 	<Button
-		android:visibility="gone"
 		android:id="@+id/history_and_collectionButton"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
