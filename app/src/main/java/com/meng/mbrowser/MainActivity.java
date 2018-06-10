@@ -51,7 +51,6 @@ public class MainActivity extends Activity{
         topBar.setUrl("https://github.com/cn-s3bit/TH902");
 		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
         webView=(WebView) findViewById(R.id.main_webView);
-        topBar.setOnClickListener(onClickListener);
         bottomBar.setOnClickListener(onClickListener);
         menuBar.setRelationWebView(webView);
         webView.getSettings().setJavaScriptEnabled(sharedPreference.getBoolean(Data.preferenceKey.useJavaScript,true));
@@ -102,14 +101,7 @@ public class MainActivity extends Activity{
         public void onClick(View v){
 			topBar.setIsEdit(false);
             switch(v.getId()){
-                case R.id.topBar_ImageButton_goto:
-                    String cookie = sharedPreference.getValue(Data.preferenceKey.cookieValue);
-                    if(!cookie.equals("null")){
-                        tool.syncCookie(getApplicationContext(),topBar.getUrl(),cookie);
-                    }
-                    webView.loadUrl(topBar.getUrl());
-					topBar.setIsEdit(false);
-                    break;
+                
                 case R.id.bottomBar_ImageButton_back:
                     goBack();
                     break;

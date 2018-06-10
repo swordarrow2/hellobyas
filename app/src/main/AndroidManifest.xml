@@ -3,6 +3,10 @@
     package="com.meng.mbrowser">
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+	
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -23,7 +27,9 @@
             </intent-filter>-->
         </activity>
         <activity android:name=".notSupport"/>
-        <activity android:name=".preferenceActivity" android:theme="@android:style/Theme.Holo"/>
+        <activity 
+			android:name=".preferenceActivity"
+			android:theme="@android:style/Theme.Holo"/>
 		<activity android:name=".tools.p2"/>
 		<activity
 			android:name=".historyAndCollectionView"
@@ -35,6 +41,13 @@
 			android:name=".viewCode"
 			android:theme="@android:style/Theme.Holo"
 			android:label="查看源码" />
+		
+		<activity 
+			android:label="生成结果"
+			android:name="ShowQrCodeActivity"
+			android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".CaptureActivity"/>
+		
     </application>
 
 </manifest>

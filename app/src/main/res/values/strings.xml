@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mbrowser</string>
+    <string name="app_name">Mbrowser</string> 
+  <string name="scan_failed">Scan failed!</string>
     <string name="update_content">更新内容</string>
     <string name="update_content_text_2_2_1">V2.2.1：\n收藏内容bug修复\n\n</string>
 	<string name="update_content_text_2_2">V2.2：\n添加动画效果\n\n</string>

@@ -4,8 +4,8 @@ import android.content.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-
 import com.meng.mbrowser.*;
+import com.meng.mbrowser.tools.*;
 
 /**
  * Created by Administrator on 2018/5/22.
@@ -16,6 +16,7 @@ public class TopBar extends LinearLayout{
 
     private EditText editTextUrl;
     private ImageButton imageButtonGoto;
+	private ImageButton imageButtonqr;
     private ProgressBar pb;
 	private TextView tv;
 
@@ -25,6 +26,7 @@ public class TopBar extends LinearLayout{
         LayoutInflater.from(c).inflate(R.layout.top_bar,this);
         editTextUrl=(EditText) findViewById(R.id.topBar_EditText_url);
         imageButtonGoto=(ImageButton) findViewById(R.id.topBar_ImageButton_goto);
+		imageButtonqr=(ImageButton) findViewById(R.id.topBar_ImageButton_qr);
 		tv=(TextView) findViewById(R.id.top_barTextView);
         pb=(ProgressBar) findViewById(R.id.top_barProgressBar);
 		tv.setOnClickListener(new OnClickListener(){
@@ -37,14 +39,31 @@ public class TopBar extends LinearLayout{
 					MainActivity.instence.menuBar.setVisibility(GONE);
 				}
 			});
-    }
+		imageButtonGoto.setOnClickListener(new OnClickListener(){
 
-    public void setOnClickListener(OnClickListener onClickListener){
-        imageButtonGoto.setOnClickListener(onClickListener);
+				@Override
+				public void onClick(View p1){
+					// TODO: Implement this method
+					String cookie =MainActivity.instence.sharedPreference.getValue(Data.preferenceKey.cookieValue);
+                    if(!cookie.equals("null")){
+                        tool.syncCookie(getContext(),MainActivity.instence.topBar.getUrl(),cookie);
+                    }
+					MainActivity.instence.webView.loadUrl(MainActivity.instence.topBar.getUrl());
+					MainActivity.instence.topBar.setIsEdit(false);
+				}
+			});
+		imageButtonqr.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					// TODO: Implement this method
+					MainActivity.instence.startActivityForResult(new Intent(MainActivity.instence,CaptureActivity.class),55);
+				}
+			});
     }
 
     public String getUrl(){
-        return editTextUrl.getText().toString();
+        return tv.getText().toString();
     }
 
     public void setUrl(String url){
@@ -66,10 +85,12 @@ public class TopBar extends LinearLayout{
 				tv.setVisibility(GONE);
 				editTextUrl.setVisibility(VISIBLE);
 				imageButtonGoto.setVisibility(VISIBLE);
+				imageButtonqr.setVisibility(VISIBLE);
 			}else{
 				tv.setVisibility(VISIBLE);
 				editTextUrl.setVisibility(GONE);
 				imageButtonGoto.setVisibility(GONE);
+				imageButtonqr.setVisibility(GONE);
 			}
 		}
 	}
