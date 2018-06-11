@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mbrowser</string> 
-  <string name="scan_failed">Scan failed!</string>
+	<string name="scan_failed">Scan failed!</string>
     <string name="update_content">更新内容</string>
+
+	<string name="update_content_text_2_5_1">V2.5.1：\bug修正\n\n</string>
+	<string name="update_content_text_2_5">V2.5：\响应隐式Intent\n更新内容界面链接点击时不会弹出浏览器选择器\n\n</string>
+	<string name="update_content_text_2_4">V2.4：\n二维码扫描相关代码修改\n\n</string>
+	<string name="update_content_text_2_3">V2.3：\n二维码扫描\n使用了开源项目https://github.com/XuDaojie/QRCode-Android\n\n</string>
     <string name="update_content_text_2_2_1">V2.2.1：\n收藏内容bug修复\n\n</string>
 	<string name="update_content_text_2_2">V2.2：\n添加动画效果\n\n</string>
 	<string name="update_content_text_2_1">V2.1：\n顶部导航栏效果优化\n\n</string>
@@ -15,7 +20,7 @@
     <string name="update_content_text_1_5">V1.5：\n设置界面\n\n</string>
     <string name="update_content_text_1_4">V1.4：\n控制按钮放入底部导航栏\n网址输入放入顶部导航栏\n下载响应\n\n</string>
     <string name="update_content_text_1_3">V1.3：\n添加了几个控制按钮\n\n</string>
-    <string name="update_content_text_1_2">V1.2：\n启动时预留的Activity\n\n</string>
+    <string name="update_content_text_1_2">V1.2：\n启动时预留的Activity\n源码上传至https://github.com\n\n</string>
     <string name="update_content_text_1_1">V1.1：\n仅查看网页的功能\n</string>
     <string name="load_default">默认方式</string>
     <string name="load_normal">通常方式</string>

@@ -48,7 +48,7 @@ public class TopBar extends LinearLayout{
                     if(!cookie.equals("null")){
                         tool.syncCookie(getContext(),MainActivity.instence.topBar.getUrl(),cookie);
                     }
-					MainActivity.instence.webView.loadUrl(MainActivity.instence.topBar.getUrl());
+					MainActivity.instence.webView.loadUrl(getUrl());
 					MainActivity.instence.topBar.setIsEdit(false);
 				}
 			});
@@ -63,7 +63,7 @@ public class TopBar extends LinearLayout{
     }
 
     public String getUrl(){
-        return tv.getText().toString();
+        return editTextUrl.getText().toString();
     }
 
     public void setUrl(String url){

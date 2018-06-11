@@ -8,7 +8,6 @@ import android.view.*;
 import android.view.View.*;
 import android.webkit.*;
 import android.widget.*;
-
 import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;
@@ -91,7 +90,11 @@ public class MainActivity extends Activity{
 			});
         webView.setWebViewClient(new MWebViewClient());
         webView.setWebChromeClient(new MWebChromeClient());
-        webView.loadUrl(topBar.getUrl());
+		if(getIntent().getData()!=null){
+			webView.loadUrl(getIntent().getData().toString());
+		}else{
+			webView.loadUrl(topBar.getUrl());
+		}
         //   webView.loadUrl("file:///android_asset/javascript.html");	
     }
 
@@ -101,7 +104,7 @@ public class MainActivity extends Activity{
         public void onClick(View v){
 			topBar.setIsEdit(false);
             switch(v.getId()){
-                
+
                 case R.id.bottomBar_ImageButton_back:
                     goBack();
                     break;

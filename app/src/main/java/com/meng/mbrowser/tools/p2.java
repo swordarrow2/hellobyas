@@ -9,7 +9,7 @@ import com.meng.mbrowser.*;
  */
 
 public class p2 extends PreferenceActivity{
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

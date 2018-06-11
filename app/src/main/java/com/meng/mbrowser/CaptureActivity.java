@@ -5,7 +5,6 @@ import android.content.*;
 import android.os.*;
 import android.text.*;
 import android.widget.*;
-import android.view.View.*;
 
 /**
  * Created by xdj on 16/9/17.
@@ -25,7 +24,7 @@ public class CaptureActivity extends io.github.xudaojie.qrcodelib.CaptureActivit
     @Override
     protected void handleResult(final String resultString){
         if(TextUtils.isEmpty(resultString)){
-            Toast.makeText(this,io.github.xudaojie.qrcodelib.R.string.scan_failed,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.scan_failed,Toast.LENGTH_SHORT).show();
             restartPreview();
         }else{	
             if(mDialog==null){

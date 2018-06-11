@@ -1,13 +1,10 @@
 package com.meng.mbrowser.tools;
 
 import android.content.*;
-import android.util.Log;
-import android.widget.*;
-import com.meng.mbrowser.tools.*;
+import android.util.*;
 import java.io.*;
-import org.apache.http.util.*;
 
-public class CollectionTool {
+public class CollectionTool{
 	Context context;
 	private String collectionFilePath="/data/data/com.meng.mbrowser/collection.xml";
 	String collectionText="";
@@ -26,29 +23,29 @@ public class CollectionTool {
 	}
 	public String[] getCollection(){
 		try{
-		return xmlparser.parseXml();
+			return xmlparser.parseXml();
 		}catch(Exception e){
 			Log.e(getClass().getName(),e.toString());
 			return new String[]{"读取出错",e.toString()};
 		}
 	}
 	/*public void deletecollection(int i){
-		int line=0;
-		int flag=collectionText.indexOf("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<collections>\n");
-		
-		int index=collectionText.indexOf("<collection",flag);
-		int end=collectionText.indexOf("/>",flag)+2;
-		if(i==line){
-			collectionText.
-		}
-		
-	}*/
+	 int line=0;
+	 int flag=collectionText.indexOf("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<collections>\n");
+
+	 int index=collectionText.indexOf("<collection",flag);
+	 int end=collectionText.indexOf("/>",flag)+2;
+	 if(i==line){
+	 collectionText.
+	 }
+
+	 }*/
 	public void clean(){
 		collectionText="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<collections>\n</collections>";
 		tool.saveTextFile(collectionFilePath,collectionText);
 	}
 
-    
+
 
 
 }

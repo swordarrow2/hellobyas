@@ -1,23 +1,20 @@
 package com.meng.mbrowser.tools;
 
 import android.content.*;
-import android.util.Log;
-import android.widget.*;
-import com.meng.mbrowser.tools.*;
+import android.util.*;
 import java.io.*;
-import org.apache.http.util.*;
 
-public class HistoryTool {
+public class HistoryTool{
 	Context context;
 	private String historyFilePath="/data/data/com.meng.mbrowser/history.xml";
 	String historyText="";
 	xmlParser xmlparser;
-	public HistoryTool(Context c) throws IOException{
+	public HistoryTool(Context c){
 		context=c;
 		historyText=tool.readTextFile(historyFilePath,"historys");
 		xmlparser=new xmlParser(historyFilePath,"history");
 	}
-	public void addHistory(String s) throws Exception{
+	public void addHistory(String s){
 		tool.saveTextFile(historyFilePath,historyText=tool.insertText(tool.readTextFile(historyFilePath,"historys"),"\n <history value=\""+s+"\" />","<historys>"));
 	}
 	public String[] getHistory(){

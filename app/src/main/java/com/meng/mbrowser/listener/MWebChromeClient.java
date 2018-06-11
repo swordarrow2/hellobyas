@@ -4,8 +4,7 @@ import android.content.*;
 import android.webkit.*;
 import com.meng.mbrowser.*;
 
-public class MWebChromeClient extends WebChromeClient
-{
+public class MWebChromeClient extends WebChromeClient{
 	@Override
 	public boolean onJsAlert(WebView view,String url,String message,final JsResult result){
 		AlertDialog.Builder b = new AlertDialog.Builder(view.getContext());

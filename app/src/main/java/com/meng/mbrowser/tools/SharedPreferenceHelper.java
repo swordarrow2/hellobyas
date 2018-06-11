@@ -1,19 +1,18 @@
 package com.meng.mbrowser.tools;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.*;
 
 /**
  * Created by Administrator on 2018/3/13.
  */
 
-public class SharedPreferenceHelper {
+public class SharedPreferenceHelper{
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private Context context;
 
-    public SharedPreferenceHelper(Context c, String name){
+    public SharedPreferenceHelper(Context c,String name){
         context=c;
         sp=context.getSharedPreferences(name,0);
         editor=sp.edit();
@@ -34,7 +33,7 @@ public class SharedPreferenceHelper {
     public String getValue(String key){
         return sp.getString(key,null);
     }
-    public boolean getBoolean(String key) {
+    public boolean getBoolean(String key){
         return sp.getBoolean(key,false);
     }
     public void putBoolean(String key,Boolean value){

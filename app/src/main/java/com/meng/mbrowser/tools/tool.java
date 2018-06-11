@@ -2,11 +2,8 @@ package com.meng.mbrowser.tools;
 
 import android.content.*;
 import android.os.*;
-import android.view.*;
-import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
-import com.meng.mbrowser.*;
 import java.io.*;
 import org.apache.http.util.*;
 
@@ -14,69 +11,77 @@ import org.apache.http.util.*;
  * Created by Administrator on 2018/5/23.
  */
 
-public class tool {
+public class tool{
     private final static String ENCODE = "utf-8";
-    public static int getAndroidSdkVersion() {
+    public static int getAndroidSdkVersion(){
         return Build.VERSION.SDK_INT;
     }
-    public static String getURLDecoderString(String str) {
+    public static String getURLDecoderString(String str){
         String result = "";
-        if (null == str) {
+        if(null==str){
             return "";
         }
-        try {
-            result = java.net.URLDecoder.decode(str, ENCODE);
-        } catch (UnsupportedEncodingException e) {
+        try{
+            result=java.net.URLDecoder.decode(str,ENCODE);
+        }catch(UnsupportedEncodingException e){
             e.printStackTrace();
         }
         return result;
     }
-    public static String getURLEncoderString(String str) {
+    public static String getURLEncoderString(String str){
         String result = "";
-        if (null == str) {
+        if(null==str){
             return "";
         }
-        try {
-            result = java.net.URLEncoder.encode(str, ENCODE);
-        } catch (UnsupportedEncodingException e) {
+        try{
+            result=java.net.URLEncoder.encode(str,ENCODE);
+        }catch(UnsupportedEncodingException e){
             e.printStackTrace();
         }
         return result;
     }
-    public static void syncCookie(Context context,String url,String cookieValue) {
+    public static void syncCookie(Context context,String url,String cookieValue){
         CookieSyncManager.createInstance(context);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.removeSessionCookie();//移除
-        cookieManager.setCookie(url, cookieValue);//cookies是在HttpClient中获得的cookie
+        cookieManager.setCookie(url,cookieValue);//cookies是在HttpClient中获得的cookie
         CookieSyncManager.getInstance().sync();
     }
-	
 
-	public static String readTextFile(String file,String fileTagWhenNoFile) throws IOException{
-        File f = new File(file);
-		if(!f.exists()){
-			f.createNewFile();
-			saveTextFile(file,"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<"+fileTagWhenNoFile+">\n</"+fileTagWhenNoFile+">");
+
+	public static String readTextFile(String file,String fileTagWhenNoFile){
+		try{
+			File f = new File(file);
+			if(!f.exists()){
+				f.createNewFile();
+				saveTextFile(file,"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<"+fileTagWhenNoFile+">\n</"+fileTagWhenNoFile+">");
+			}
+			String res = "";
+			FileInputStream fin = new FileInputStream(file);
+			int length = fin.available();
+			byte[] buffer = new byte[length];
+			fin.read(buffer);
+			res=EncodingUtils.getString(buffer,"UTF-8");
+			fin.close();
+
+			return res;
+		}catch(IOException ioe){
+			return ioe.toString();
 		}
-        String res = "";
-		FileInputStream fin = new FileInputStream(file);
-		int length = fin.available();
-		byte[] buffer = new byte[length];
-		fin.read(buffer);
-		res=EncodingUtils.getString(buffer,"UTF-8");
-		fin.close();
-
-        return res;
     }
 
-    public static String insertText(String text,String textToInsert,String indexOf)throws Exception{
-        int index = text.indexOf(indexOf)+indexOf.length();
-        StringBuilder sb = new StringBuilder(text);
-        sb.insert(index,textToInsert);
-        return sb.toString();
+    public static String insertText(String text,String textToInsert,String indexOf){
+		try{
+			int index = text.indexOf(indexOf)+indexOf.length();
+			StringBuilder sb = new StringBuilder(text);
+			sb.insert(index,textToInsert);
+			return sb.toString();
+		}catch(Exception e){
+			return "";
+		}
     }
-	
+
 	public static boolean saveTextFile(String file,String textToSave){
         try{
             FileOutputStream fout = new FileOutputStream(file);
@@ -88,11 +93,11 @@ public class tool {
             return false;
         }
     }
-	
-	
-	
+
+
+
 	public static void showToast(Context c,Object o){
 		Toast.makeText(c,o.toString(),Toast.LENGTH_SHORT).show();
 	}
-	
+
 }

@@ -4,8 +4,6 @@ import android.app.*;
 import android.os.*;
 import android.widget.*;
 
-import com.meng.mbrowser.tools.ExceptionCatcher;
-
 public class notSupport extends Activity{
 
     @Override

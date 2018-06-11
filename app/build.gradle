@@ -7,8 +7,8 @@ android {
         applicationId "com.meng.mbrowser"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 20180603
-        versionName "2.2"
+        versionCode 201806011
+        versionName "2.5.1"
     }
     buildTypes {
         release {
@@ -20,6 +20,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-	compile 'com.github.XuDaojie:QRCode-Android:v0.4.2'
     compile files('libs/apache-httpcomponents-httpcore.jar')
 }

@@ -4,7 +4,7 @@ package com.meng.mbrowser.tools;
  * Created by Administrator on 2018/5/23.
  */
 
-public class Data {
+public class Data{
     public static class preferenceKey{
         public static final String mainPreferenceName="mainPreference";
         public static final String cookieValue="cookieValue";

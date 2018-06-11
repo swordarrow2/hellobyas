@@ -1,21 +1,16 @@
 package com.meng.mbrowser;
 
-import android.os.Bundle;
-import android.os.Environment;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-
-import com.meng.mbrowser.tools.Data;
-
-import java.io.File;
+import android.os.*;
+import android.preference.*;
+import com.meng.mbrowser.tools.*;
+import java.io.*;
 
 /**
  * Created by Administrator on 2018/3/13.
  */
 
 public class preferenceActivity extends PreferenceActivity{
+	public static preferenceActivity instence;
     Preference clean;
     ListPreference uaList;
     EditTextPreference uaInput;
@@ -23,6 +18,7 @@ public class preferenceActivity extends PreferenceActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+		instence=this;
 		getPreferenceManager().setSharedPreferencesName(Data.preferenceKey.mainPreferenceName);
 		addPreferencesFromResource(R.xml.preference);
 		uaList=(ListPreference) findPreference(Data.preferenceKey.userAgentList);
