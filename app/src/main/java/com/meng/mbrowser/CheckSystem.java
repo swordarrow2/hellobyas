@@ -7,7 +7,7 @@ import com.meng.mbrowser.tools.*;
 import android.net.*;
 
 
-public class checkSystem extends Activity{
+public class CheckSystem extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){

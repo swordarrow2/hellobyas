@@ -1,7 +1,6 @@
 package com.meng.mbrowser;
 
 import android.app.*;
-import android.content.*;
 import android.os.*;
 import android.text.*;
 import android.text.style.*;
@@ -12,7 +11,7 @@ import android.widget.*;
  * Created by Administrator on 2018/4/20.
  */
 
-public class newVersion extends Activity{
+public class NewVersion extends Activity{
     TextView tv;
 
     @Override
@@ -75,7 +74,7 @@ public class newVersion extends Activity{
 			MainActivity.instence.webView.loadUrl(url);
 			MainActivity.instence.topBar.setUrl(url);
 			MainActivity.instence.historyTool.addHistory(url);
-			preferenceActivity.instence.finish();
+			PreferenceActivity.instence.finish();
 			finish();
 		}  
 

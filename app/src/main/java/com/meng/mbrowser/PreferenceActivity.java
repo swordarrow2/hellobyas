@@ -9,8 +9,8 @@ import java.io.*;
  * Created by Administrator on 2018/3/13.
  */
 
-public class preferenceActivity extends PreferenceActivity{
-	public static preferenceActivity instence;
+public class PreferenceActivity extends android.preference.PreferenceActivity {
+	public static PreferenceActivity instence;
     Preference clean;
     ListPreference uaList;
     EditTextPreference uaInput;

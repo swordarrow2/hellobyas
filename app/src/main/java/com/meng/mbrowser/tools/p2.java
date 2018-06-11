@@ -1,14 +1,15 @@
 package com.meng.mbrowser.tools;
 
 import android.os.*;
-import android.preference.*;
+import android.preference.PreferenceActivity;
+
 import com.meng.mbrowser.*;
 
 /**
  * Created by Administrator on 2018/3/13.
  */
 
-public class p2 extends PreferenceActivity{
+public class p2 extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

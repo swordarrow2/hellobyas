@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center" />
 
-    <WebView
+    <com.meng.mbrowser.views.MWebView
         android:id="@+id/main_webView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

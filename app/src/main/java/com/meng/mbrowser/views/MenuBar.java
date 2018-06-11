@@ -63,7 +63,7 @@ public class MenuBar extends LinearLayout{
                     System.exit(0);
                     break;
                 case R.id.menu_barButton2_settings:
-                    c.startActivity(new Intent(c,preferenceActivity.class));
+                    c.startActivity(new Intent(c,PreferenceActivity.class));
                     break;
                 case R.id.menu_barButton3_test:
 					MainActivity.instence.startActivityForResult(new Intent(c,CaptureActivity.class),55);
@@ -73,7 +73,7 @@ public class MenuBar extends LinearLayout{
                     webview.loadUrl("http://127.0.0.1:46834/index.html");
                     break;
                 case R.id.menu_barButton5_history:
-                    Intent i = new Intent(c,historyAndCollectionView.class);
+                    Intent i = new Intent(c,HistoryAndCollectionView.class);
                     i.putExtra("isHistory",true);
                     MainActivity.instence.startActivityForResult(i,55);
                     break;
@@ -87,13 +87,13 @@ public class MenuBar extends LinearLayout{
                     }
                     break;
                 case R.id.menu_barButton7_viewCode:
-                    Intent iViewCode=new Intent(c,viewCode.class);
+                    Intent iViewCode=new Intent(c,ViewCode.class);
 					iViewCode.putExtra("url",MainActivity.instence.topBar.getUrl());
 					iViewCode.putExtra("ua",MainActivity.instence.webView.getSettings().getUserAgentString());
 					c.startActivity(iViewCode);
                     break;
                 case R.id.menu_barButton8_collection:
-                    Intent i2 = new Intent(c,historyAndCollectionView.class);
+                    Intent i2 = new Intent(c,HistoryAndCollectionView.class);
                     i2.putExtra("isHistory",false);
                     MainActivity.instence.startActivityForResult(i2,55);
                     break;

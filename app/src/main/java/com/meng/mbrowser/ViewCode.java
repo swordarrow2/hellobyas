@@ -7,7 +7,7 @@ import com.meng.mbrowser.tools.*;
 import java.io.*;
 import java.net.*;
 
-public class viewCode extends Activity{
+public class ViewCode extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

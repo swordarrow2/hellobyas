@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.NoActionBar">
-        <activity android:name=".checkSystem">
+        <activity android:name=".CheckSystem">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,19 +32,19 @@
 			<category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".notSupport"/>
+        <activity android:name=".NotSupport"/>
         <activity 
-			android:name=".preferenceActivity"
+			android:name=".PreferenceActivity"
 			android:theme="@android:style/Theme.Holo"/>
 		<activity android:name=".tools.p2"/>
 		<activity
-			android:name=".historyAndCollectionView"
+			android:name=".HistoryAndCollectionView"
 			android:theme="@android:style/Theme.Holo"/>
         <activity
-			android:name=".newVersion"
+			android:name=".NewVersion"
 			android:theme="@android:style/Theme.Holo.Dialog"/>
 		<activity 
-			android:name=".viewCode"
+			android:name=".ViewCode"
 			android:theme="@android:style/Theme.Holo"
 			android:label="查看源码" />
 

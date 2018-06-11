@@ -7,7 +7,7 @@ import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
 
-public class historyAndCollectionView extends Activity{
+public class HistoryAndCollectionView extends Activity{
     ListView list;
     ArrayAdapter<String> adapter;
 
@@ -29,7 +29,7 @@ public class historyAndCollectionView extends Activity{
 						String s = p1.getItemAtPosition(p3).toString();
 						if(s.equals("清除所有条目")){
 							MainActivity.instence.historyTool.clean();
-							adapter=new ArrayAdapter<String>(historyAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
+							adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
 							list.setAdapter(adapter);
 						}else{
 							returnURL(s);
@@ -47,7 +47,7 @@ public class historyAndCollectionView extends Activity{
 						String s = p1.getItemAtPosition(p3).toString();
 						if(s.equals("清除所有条目")){
 							MainActivity.instence.collectionTool.clean();
-							adapter=new ArrayAdapter<String>(historyAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
+							adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
 							list.setAdapter(adapter);
 						}else{
 							returnURL(s);

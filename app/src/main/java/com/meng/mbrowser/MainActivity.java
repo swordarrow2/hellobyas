@@ -19,7 +19,7 @@ public class MainActivity extends Activity{
     public MenuBar menuBar;
     public BottomBar bottomBar;
     public SharedPreferenceHelper sharedPreference;
-    public WebView webView;
+    public MWebView webView;
 	public HistoryTool historyTool;
 	public CollectionTool collectionTool;
     long exitTime;
@@ -49,7 +49,7 @@ public class MainActivity extends Activity{
         bottomBar=(BottomBar) findViewById(R.id.bottomBar);
         topBar.setUrl("https://github.com/cn-s3bit/TH902");
 		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
-        webView=(WebView) findViewById(R.id.main_webView);
+        webView=(MWebView) findViewById(R.id.main_webView);
         bottomBar.setOnClickListener(onClickListener);
         menuBar.setRelationWebView(webView);
         webView.getSettings().setJavaScriptEnabled(sharedPreference.getBoolean(Data.preferenceKey.useJavaScript,true));

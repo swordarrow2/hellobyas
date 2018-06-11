@@ -4,7 +4,7 @@ import android.app.*;
 import android.os.*;
 import android.widget.*;
 
-public class notSupport extends Activity{
+public class NotSupport extends Activity{
 
     @Override
     public void onCreate(Bundle savedInstanceState){
