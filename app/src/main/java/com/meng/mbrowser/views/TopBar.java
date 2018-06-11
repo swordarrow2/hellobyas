@@ -52,6 +52,15 @@ public class TopBar extends LinearLayout{
 					MainActivity.instence.topBar.setIsEdit(false);
 				}
 			});
+		imageButtonGoto.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				Intent i = new Intent(MainActivity.instence,ShowQrCodeActivity.class);
+				i.putExtra("url",MainActivity.instence.topBar.getUrl());
+				MainActivity.instence.startActivity(i);
+				return false;
+			}
+		});
 		imageButtonqr.setOnClickListener(new OnClickListener(){
 
 				@Override
