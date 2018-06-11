@@ -4,7 +4,8 @@
 	<string name="scan_failed">Scan failed!</string>
     <string name="update_content">更新内容</string>
 
-	<string name="update_content_text_2_5_1">V2.5.1：\bug修正\n\n</string>
+    <string name="update_content_text_2_6">V2.6：\相应某些网站的自定义协议\n\n</string>
+    <string name="update_content_text_2_5_1">V2.5.1：\bug修正\n\n</string>
 	<string name="update_content_text_2_5">V2.5：\响应隐式Intent\n更新内容界面链接点击时不会弹出浏览器选择器\n\n</string>
 	<string name="update_content_text_2_4">V2.4：\n二维码扫描相关代码修改\n\n</string>
 	<string name="update_content_text_2_3">V2.3：\n二维码扫描\n使用了开源项目https://github.com/XuDaojie/QRCode-Android\n\n</string>

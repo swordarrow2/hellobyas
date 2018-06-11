@@ -1,6 +1,9 @@
 package com.meng.mbrowser.listener;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.*;
+import android.net.Uri;
 import android.os.*;
 import android.webkit.*;
 import com.meng.mbrowser.*;
@@ -12,7 +15,16 @@ public class MWebViewClient extends WebViewClient{
     @Override
     public boolean shouldOverrideUrlLoading(WebView view,String url){
         MainActivity.instence.topBar.setUrl(url);
-        view.loadUrl(url);
+        if(url.startsWith("https") || url.startsWith("http")){
+            view.loadUrl(url);
+        }else{
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                MainActivity.instence.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // TODO: handle exception
+            }
+        }
         return true;
     }
 

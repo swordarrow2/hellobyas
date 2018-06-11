@@ -58,8 +58,8 @@ public class MainActivity extends Activity{
         webView.getSettings().setUserAgentString(getUA());
         webView.getSettings().setCacheMode(Integer.parseInt(sharedPreference.getValue(Data.preferenceKey.cacheMode,"0")));
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setGeolocationEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -68,6 +68,9 @@ public class MainActivity extends Activity{
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollbarOverlay(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setDomStorageEnabled(true);
+
 		webView.setOnTouchListener(new OnTouchListener(){
 
 				@Override

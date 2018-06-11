@@ -8,7 +8,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 201806011
-        versionName "2.5.1"
+        versionName "2.6.0"
     }
     buildTypes {
         release {
