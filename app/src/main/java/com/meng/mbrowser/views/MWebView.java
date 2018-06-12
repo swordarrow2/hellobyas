@@ -6,6 +6,7 @@ import android.util.*;
 import android.view.*;
 import android.webkit.*;
 import com.meng.mbrowser.*;
+import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 
 /**
@@ -58,6 +59,8 @@ public class MWebView extends WebView{
 					MainActivity.instence.startActivity(intent);
 				}
 			});
+		setWebViewClient(new MWebViewClient());
+		setWebChromeClient(new MWebChromeClient());
 	}
 
 	private String getUA(){

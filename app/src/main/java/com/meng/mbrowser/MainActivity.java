@@ -2,16 +2,11 @@ package com.meng.mbrowser;
 
 import android.app.*;
 import android.content.*;
-import android.net.*;
 import android.os.*;
 import android.view.*;
-import android.view.View.*;
-import android.webkit.*;
 import android.widget.*;
-import com.meng.mbrowser.listener.*;
 import com.meng.mbrowser.tools.*;
 import com.meng.mbrowser.views.*;
-import java.io.*;
 
 public class MainActivity extends Activity{
 	public static MainActivity instence;
@@ -46,16 +41,14 @@ public class MainActivity extends Activity{
         topBar=(TopBar) findViewById(R.id.topBar);
         menuBar=(MenuBar) findViewById(R.id.menuBar);
         bottomBar=(BottomBar) findViewById(R.id.bottomBar);
-        topBar.setUrl("https://github.com/cn-s3bit/TH902");
-		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
         webView=(MWebView) findViewById(R.id.main_webView);
+		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
+		topBar.setUrl("https://github.com/cn-s3bit/TH902");
 		webView.init();
         bottomBar.setOnClickListener(onClickListener);
         menuBar.setRelationWebView(webView);
 		String s = "Mozilla/5.0 (Linux; Android 6.0.1; DUK-AL20 Build/MXC89K; wv)"+
 			" AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/44.0.2403.119 Mobile Safari/537.36";
-        webView.setWebViewClient(new MWebViewClient());
-        webView.setWebChromeClient(new MWebChromeClient());
 		if(getIntent().getData()!=null){
 			webView.loadUrl(getIntent().getData().toString());
 		}else{
@@ -70,7 +63,6 @@ public class MainActivity extends Activity{
         public void onClick(View v){
 			topBar.setIsEdit(false);
             switch(v.getId()){
-
                 case R.id.bottomBar_ImageButton_back:
                     goBack();
                     break;

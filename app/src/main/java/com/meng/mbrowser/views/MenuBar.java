@@ -129,11 +129,9 @@ public class MenuBar extends LinearLayout{
 		// TODO: Implement this method
 		if(visibility!=getVisibility()){
 			if(visibility==GONE){
-				Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.right_out);
-				startAnimation(animation);
+				startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.right_out));
 			}else{
-				Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.left_in);
-				startAnimation(animation);
+				startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.left_in));
 			}
 		}	
 		super.setVisibility(visibility);
