@@ -38,6 +38,17 @@ public class MenuBar extends LinearLayout{
             tbs[i]=(Button) findViewById(i1[i]);
             tbs[i].setOnClickListener(onClickListener);
         }
+		tbs[1].setOnLongClickListener(new View.OnLongClickListener(){
+
+				@Override
+				public boolean onLongClick(View p1){
+					// TODO: Implement this method
+					//MainActivity.instence.historyTool.clean();
+					tool.showToast(getContext(),tool.readTextFile("/data/data/com.meng.mbrowser/history.xml","historys"));
+				//	tool.showToast(getContext(),"history cleaned");
+					return true;
+				}
+			});
 		tbs[2].setOnLongClickListener(new View.OnLongClickListener(){
 
 				@Override
@@ -46,9 +57,21 @@ public class MenuBar extends LinearLayout{
 					Intent i = new Intent(MainActivity.instence,ShowQrCodeActivity.class);
                     i.putExtra("url",MainActivity.instence.topBar.getUrl());
                     MainActivity.instence.startActivity(i);
-					return false;
+					return true;
 				}
 			});
+		tbs[3].setOnLongClickListener(new View.OnLongClickListener(){
+
+				@Override
+				public boolean onLongClick(View p1){
+					// TODO: Implement this method
+					//MainActivity.instence.historyTool.clean();
+					tool.showToast(getContext(),tool.readTextFile("/data/data/com.meng.mbrowser/collection.xml","collections"));
+				//	tool.showToast(getContext(),"history cleaned");
+					return true;
+				}
+			});
+			
     }
 
     public void setRelationWebView(WebView webview){

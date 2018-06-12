@@ -28,8 +28,9 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
 		instence=this;
+        init();
+
     }
 
     private void init(){
@@ -40,57 +41,19 @@ public class MainActivity extends Activity{
         if(sharedPreference.getValue(Data.preferenceKey.mainPage)==null||sharedPreference.getValue(Data.preferenceKey.mainPage).equals("")){
             sharedPreference.putValue(Data.preferenceKey.mainPage,"http://swordarrow2.github.io");
         }
-		try{
-			historyTool=new HistoryTool(this);
-			collectionTool=new CollectionTool(this);
-		}catch(IOException e){}	
+		historyTool=new HistoryTool(this);
+		collectionTool=new CollectionTool(this);
         topBar=(TopBar) findViewById(R.id.topBar);
         menuBar=(MenuBar) findViewById(R.id.menuBar);
         bottomBar=(BottomBar) findViewById(R.id.bottomBar);
         topBar.setUrl("https://github.com/cn-s3bit/TH902");
 		//	topBar.setUrl(sharedPreference.getValue(Data.preferenceKey.mainPage));
         webView=(MWebView) findViewById(R.id.main_webView);
+		webView.init();
         bottomBar.setOnClickListener(onClickListener);
         menuBar.setRelationWebView(webView);
-        webView.getSettings().setJavaScriptEnabled(sharedPreference.getBoolean(Data.preferenceKey.useJavaScript,true));
-        String s = "Mozilla/5.0 (Linux; Android 6.0.1; DUK-AL20 Build/MXC89K; wv)"+
+		String s = "Mozilla/5.0 (Linux; Android 6.0.1; DUK-AL20 Build/MXC89K; wv)"+
 			" AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/44.0.2403.119 Mobile Safari/537.36";
-        webView.getSettings().setUserAgentString(getUA());
-        webView.getSettings().setCacheMode(Integer.parseInt(sharedPreference.getValue(Data.preferenceKey.cacheMode,"0")));
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setGeolocationEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setDisplayZoomControls(false);
-        webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webView.setHorizontalScrollBarEnabled(false);
-        webView.setVerticalScrollbarOverlay(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setDomStorageEnabled(true);
-
-		webView.setOnTouchListener(new OnTouchListener(){
-
-				@Override
-				public boolean onTouch(View p1,MotionEvent p2){
-					menuBar.setVisibility(View.GONE);
-					topBar.setIsEdit(false);
-					return false;
-				}
-			});
-		webView.setDownloadListener(new DownloadListener(){
-
-				@Override
-				public void onDownloadStart(String p1,String p2,String p3,String p4,long p5){
-					showToast(p1+"  "+p2+"   "+p3+"  "+p4+"  "+p5);
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.addCategory(Intent.CATEGORY_BROWSABLE);
-					intent.setData(Uri.parse(p1));
-					startActivity(intent);
-				}
-			});
         webView.setWebViewClient(new MWebViewClient());
         webView.setWebChromeClient(new MWebChromeClient());
 		if(getIntent().getData()!=null){
@@ -168,16 +131,6 @@ public class MainActivity extends Activity{
 			webView.loadUrl(data.getStringExtra("url"));
 		}
 	}
-	private String getUA(){
-        String data = sharedPreference.getValue(Data.preferenceKey.userAgentList,"default_value");
-        if(data.equals("default_value")){
-            return webView.getSettings().getUserAgentString();
-        }
-        if(data.equals("by_user")){
-            return sharedPreference.getValue(Data.preferenceKey.userAgent);
-        }
-        return data;
-    }
 
 	@Override
 	protected void onPause(){

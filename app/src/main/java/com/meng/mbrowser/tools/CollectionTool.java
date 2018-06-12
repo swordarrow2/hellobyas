@@ -6,10 +6,10 @@ import java.io.*;
 
 public class CollectionTool{
 	Context context;
-	private String collectionFilePath="/data/data/com.meng.mbrowser/collection.xml";
+	private final String collectionFilePath="/data/data/com.meng.mbrowser/collection.xml";
 	String collectionText="";
 	xmlParser xmlparser;
-	public CollectionTool(Context c) throws IOException{
+	public CollectionTool(Context c){
 		context=c;
 		collectionText=tool.readTextFile(collectionFilePath,"collections");
 		xmlparser=new xmlParser(collectionFilePath,"collection");

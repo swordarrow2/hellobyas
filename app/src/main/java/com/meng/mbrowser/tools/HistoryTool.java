@@ -6,7 +6,7 @@ import java.io.*;
 
 public class HistoryTool{
 	Context context;
-	private String historyFilePath="/data/data/com.meng.mbrowser/history.xml";
+	private final String historyFilePath="/data/data/com.meng.mbrowser/history.xml";
 	String historyText="";
 	xmlParser xmlparser;
 	public HistoryTool(Context c){
@@ -40,8 +40,6 @@ public class HistoryTool{
 		historyText="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<historys>\n</historys>";
 		tool.saveTextFile(historyFilePath,historyText);
 	}
-
-
 
 
 }

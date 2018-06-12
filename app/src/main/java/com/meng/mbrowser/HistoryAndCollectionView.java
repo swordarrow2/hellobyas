@@ -10,13 +10,14 @@ import android.widget.AdapterView.*;
 public class HistoryAndCollectionView extends Activity{
     ListView list;
     ArrayAdapter<String> adapter;
+	Button btnClean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         // TODO: Implement this method
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_and_collection);
-
+		btnClean=(Button)findViewById(R.id.history_and_collectionButton);
         list=(ListView) findViewById(R.id.historyAndCollectionListView);
         if(getIntent().getBooleanExtra("isHistory",false)){
             setTitle("历史记录");
@@ -28,12 +29,18 @@ public class HistoryAndCollectionView extends Activity{
 						// TODO: Implement this method
 						String s = p1.getItemAtPosition(p3).toString();
 						if(s.equals("清除所有条目")){
-							MainActivity.instence.historyTool.clean();
-							adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
-							list.setAdapter(adapter);
+							cleanHistory();
 						}else{
 							returnURL(s);
 						}
+					}
+				});
+			btnClean.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View p1){
+						// TODO: Implement this method
+						cleanHistory();
 					}
 				});
         }else{
@@ -46,12 +53,18 @@ public class HistoryAndCollectionView extends Activity{
 						// TODO: Implement this method
 						String s = p1.getItemAtPosition(p3).toString();
 						if(s.equals("清除所有条目")){
-							MainActivity.instence.collectionTool.clean();
-							adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
-							list.setAdapter(adapter);
+							cleanCollection();
 						}else{
 							returnURL(s);
 						}
+					}
+				});
+			btnClean.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View p1){
+						// TODO: Implement this method
+						cleanCollection();
 					}
 				});
         }
@@ -66,5 +79,15 @@ public class HistoryAndCollectionView extends Activity{
         setResult(RESULT_OK,i);
         finish();
     }
+	private void cleanHistory(){
+		MainActivity.instence.historyTool.clean();
+		adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
+		list.setAdapter(adapter);
+	}
+	private void cleanCollection(){
+		MainActivity.instence.collectionTool.clean();
+		adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
+		list.setAdapter(adapter);
+	}
 
 }
