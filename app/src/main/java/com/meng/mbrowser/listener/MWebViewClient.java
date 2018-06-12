@@ -4,7 +4,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.*;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.*;
+import android.view.KeyEvent;
 import android.webkit.*;
 import com.meng.mbrowser.*;
 import com.meng.mbrowser.tools.*;
@@ -70,4 +72,73 @@ public class MWebViewClient extends WebViewClient{
         super.onPageStarted(view,url,favicon);
     }
 
+    @Override
+    public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+        return super.onRenderProcessGone(view, detail);
+    }
+
+    @Override
+    public void onFormResubmission(WebView view, Message dontResend, Message resend) {
+        super.onFormResubmission(view, dontResend, resend);
+    }
+
+    @Override
+    public void onLoadResource(WebView view, String url) {
+        super.onLoadResource(view, url);
+    }
+
+    @Override
+    public void onPageCommitVisible(WebView view, String url) {
+        super.onPageCommitVisible(view, url);
+    }
+
+    @Override
+    public void onReceivedClientCertRequest(WebView view, ClientCertRequest request) {
+        super.onReceivedClientCertRequest(view, request);
+    }
+
+    @Override
+    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+        super.onReceivedError(view, request, error);
+    }
+
+    @Override
+    public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+        super.onReceivedHttpAuthRequest(view, handler, host, realm);
+    }
+
+    @Override
+    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        super.onReceivedError(view, errorCode, description, failingUrl);
+    }
+
+    @Override
+    public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+        super.onReceivedHttpError(view, request, errorResponse);
+    }
+
+    @Override
+    public void onReceivedLoginRequest(WebView view, String realm, String account, String args) {
+        super.onReceivedLoginRequest(view, realm, account, args);
+    }
+
+    @Override
+    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+        super.onReceivedSslError(view, handler, error);
+    }
+
+    @Override
+    public void onScaleChanged(WebView view, float oldScale, float newScale) {
+        super.onScaleChanged(view, oldScale, newScale);
+    }
+
+    @Override
+    public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
+        super.onUnhandledKeyEvent(view, event);
+    }
+
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        return super.shouldInterceptRequest(view, request);
+    }
 }

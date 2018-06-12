@@ -36,8 +36,7 @@
         <activity 
 			android:name=".PreferenceActivity"
 			android:theme="@android:style/Theme.Holo"/>
-		<activity android:name=".tools.p2"/>
-		<activity
+        <activity
 			android:name=".HistoryAndCollectionView"
 			android:theme="@android:style/Theme.Holo"/>
         <activity
