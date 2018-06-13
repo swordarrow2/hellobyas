@@ -1,4 +1,4 @@
-package io.github.xudaojie.qrcodelib.common;
+package com.meng.mbrowser.tools;
 
 import android.graphics.*;
 import com.google.zxing.*;

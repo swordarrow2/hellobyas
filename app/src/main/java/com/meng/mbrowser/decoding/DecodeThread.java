@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.decoding;
+package com.meng.mbrowser.decoding;
 
 import android.os.*;
 import com.google.zxing.*;
 import com.google.zxing.qrcode.decoder.DecodeHintType;
+import com.meng.mbrowser.CaptureActivity;
 
-import io.github.xudaojie.qrcodelib.*;
 import java.util.*;
 import java.util.concurrent.*;
 

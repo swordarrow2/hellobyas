@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.decoding;
+package com.meng.mbrowser.decoding;
 
 import android.os.*;
 import android.util.*;
@@ -23,11 +23,11 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.DecodeHintType;
 import com.meng.mbrowser.*;
 
-import io.github.xudaojie.qrcodelib.zxing.camera.*;
+import com.meng.mbrowser.camera.*;
+import com.meng.mbrowser.camera.PlanarYUVLuminanceSource;
+
 import java.util.*;
 
-import io.github.xudaojie.qrcodelib.CaptureActivity;
-import io.github.xudaojie.qrcodelib.zxing.camera.PlanarYUVLuminanceSource;
 
 
 final class DecodeHandler extends Handler{

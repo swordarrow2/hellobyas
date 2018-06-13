@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.view;
+package com.meng.mbrowser.view;
 
 
 import com.google.zxing.*;
 
-public final class ViewfinderResultPointCallback implements ResultPointCallback{
+public final class QRScanViewResultPointCallback implements ResultPointCallback {
 
-    private final ViewfinderView viewfinderView;
+    private final QRScanView viewfinderView;
 
-    public ViewfinderResultPointCallback(ViewfinderView viewfinderView){
-        this.viewfinderView=viewfinderView;
+    public QRScanViewResultPointCallback(QRScanView viewfinderView) {
+        this.viewfinderView = viewfinderView;
     }
 
-    public void foundPossibleResultPoint(ResultPoint point){
+    public void foundPossibleResultPoint(ResultPoint point) {
         viewfinderView.addPossibleResultPoint(point);
     }
 

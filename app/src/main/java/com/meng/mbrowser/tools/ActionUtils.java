@@ -1,4 +1,4 @@
-package io.github.xudaojie.qrcodelib.common;
+package com.meng.mbrowser.tools;
 
 import android.app.Activity;
 import android.content.Intent;

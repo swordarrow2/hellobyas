@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.decoding;
+package com.meng.mbrowser.decoding;
 
 import android.app.*;
 import android.content.*;
@@ -24,12 +24,10 @@ import android.os.*;
 import android.util.*;
 import com.google.zxing.*;
 import com.meng.mbrowser.*;
-import io.github.xudaojie.qrcodelib.*;
-import io.github.xudaojie.qrcodelib.zxing.camera.*;
-import io.github.xudaojie.qrcodelib.zxing.view.*;
+import com.meng.mbrowser.camera.*;
+import com.meng.mbrowser.view.*;
 import java.util.*;
 
-import io.github.xudaojie.qrcodelib.CaptureActivity;
 
 
 /**
@@ -47,7 +45,7 @@ public final class CaptureActivityHandler extends Handler{
                                   String characterSet){
         this.activity=activity;
         decodeThread=new DecodeThread(activity,decodeFormats,characterSet,
-									  new ViewfinderResultPointCallback(activity.getViewfinderView()));
+									  new QRScanViewResultPointCallback(activity.getViewfinderView()));
         decodeThread.start();
         state=State.SUCCESS;
         // Start ourselves capturing previews and decoding.

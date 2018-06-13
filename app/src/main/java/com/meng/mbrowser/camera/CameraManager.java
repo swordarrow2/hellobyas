@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.camera;
+package com.meng.mbrowser.camera;
 
 import android.Manifest;
 import android.content.Context;
@@ -31,7 +31,7 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 import java.util.List;
 
-import io.github.xudaojie.qrcodelib.zxing.view.ViewfinderView;
+import com.meng.mbrowser.view.QRScanView;
 
 /**
  * This object wraps the Camera service object and expects to be the only one talking to it. The
@@ -258,7 +258,7 @@ public final class CameraManager {
      */
     public Rect getFramingRectInPreview() {
         if (framingRectInPreview == null) {
-            Rect rect = new Rect(getFramingRect(ViewfinderView.RECT_OFFSET_X, ViewfinderView.RECT_OFFSET_Y));
+            Rect rect = new Rect(getFramingRect(QRScanView.RECT_OFFSET_X, QRScanView.RECT_OFFSET_Y));
             Point cameraResolution = configManager.getCameraResolution();
             Point screenResolution = configManager.getScreenResolution();
             //modify here

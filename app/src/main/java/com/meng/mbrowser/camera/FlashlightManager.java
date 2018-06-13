@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.xudaojie.qrcodelib.zxing.camera;
+package com.meng.mbrowser.camera;
 
 import android.os.*;
 import android.util.*;
