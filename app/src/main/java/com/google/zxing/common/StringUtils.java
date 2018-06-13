@@ -19,7 +19,7 @@ package com.google.zxing.common;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import com.google.zxing.DecodeHintType;
+import com.google.zxing.qrcode.decoder.DecodeHintType;
 
 /**
  * Common string-related functions.

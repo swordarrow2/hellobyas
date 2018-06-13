@@ -18,6 +18,8 @@ package io.github.xudaojie.qrcodelib.zxing.decoding;
 
 import android.os.*;
 import com.google.zxing.*;
+import com.google.zxing.qrcode.decoder.DecodeHintType;
+
 import io.github.xudaojie.qrcodelib.*;
 import java.util.*;
 import java.util.concurrent.*;

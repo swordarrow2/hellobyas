@@ -16,6 +16,8 @@
 
 package com.google.zxing;
 
+import com.google.zxing.qrcode.decoder.DecodeHintType;
+
 /**
  * Callback which is invoked when a possible result point (significant
  * point in the barcode image such as a corner) is found.

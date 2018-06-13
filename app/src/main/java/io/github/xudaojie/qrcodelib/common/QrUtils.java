@@ -2,9 +2,13 @@ package io.github.xudaojie.qrcodelib.common;
 
 import android.graphics.*;
 import com.google.zxing.*;
-import com.google.zxing.common.*;
+import com.google.zxing.common.GlobalHistogramBinarizer;
+import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.*;
+import com.google.zxing.qrcode.decoder.DecodeHintType;
+
 import java.util.*;
+
 
 public class QrUtils{
     private static byte[] yuvs;

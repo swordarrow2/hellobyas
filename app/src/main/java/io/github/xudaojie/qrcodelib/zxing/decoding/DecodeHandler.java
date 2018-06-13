@@ -19,9 +19,10 @@ package io.github.xudaojie.qrcodelib.zxing.decoding;
 import android.os.*;
 import android.util.*;
 import com.google.zxing.*;
-import com.google.zxing.common.*;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.DecodeHintType;
 import com.meng.mbrowser.*;
-import io.github.xudaojie.qrcodelib.*;
+
 import io.github.xudaojie.qrcodelib.zxing.camera.*;
 import java.util.*;
 

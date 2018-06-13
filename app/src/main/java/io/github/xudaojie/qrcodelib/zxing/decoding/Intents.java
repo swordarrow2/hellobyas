@@ -16,6 +16,8 @@
 
 package io.github.xudaojie.qrcodelib.zxing.decoding;
 
+import com.google.zxing.qrcode.decoder.DecodeHintType;
+
 /**
  * This class provides the constants to use when sending an Intent to Barcode Scanner.
  * These strings are effectively API and cannot be changed.
@@ -52,7 +54,7 @@ public final class Intents{
         public static final String SCAN_FORMATS = "SCAN_FORMATS";
 
         /**
-         * @see com.google.zxing.DecodeHintType#CHARACTER_SET
+         * @see DecodeHintType#CHARACTER_SET
          */
         public static final String CHARACTER_SET = "CHARACTER_SET";
 

@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.zxing;
+package com.google.zxing.qrcode.decoder;
+
+import com.google.zxing.ResultPoint;
+import com.google.zxing.ResultPointCallback;
 
 import java.util.List;
 

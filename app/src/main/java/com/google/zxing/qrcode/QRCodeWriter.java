@@ -28,6 +28,7 @@ import com.google.zxing.qrcode.encoder.QRCode;
 
 import java.util.Map;
 
+
 /**
  * This object renders a QR Code as a BitMatrix 2D array of greyscale values.
  *
