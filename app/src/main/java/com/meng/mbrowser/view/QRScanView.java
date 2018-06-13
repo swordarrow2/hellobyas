@@ -115,7 +115,6 @@ public final class QRScanView extends View {
             }
             frame = CameraManager.get().getFramingRect(RECT_OFFSET_X, RECT_OFFSET_Y);
         }
-
         if (frame == null) {
             // Android Studio中预览时和未获得相机权限时都为null
             int screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -128,20 +127,15 @@ public final class QRScanView extends View {
                     topOffset + RECT_OFFSET_Y,
                     leftOffset + width + RECT_OFFSET_X,
                     topOffset + height + RECT_OFFSET_Y);
-//            return;
         }
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-
-        // Draw the exterior (i.e. outside the framing rect) darkened
         paint.setColor(resultBitmap != null ? resultColor : maskColor);
         canvas.drawRect(0, 0, width, frame.top, paint);
         canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
         canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1, paint);
         canvas.drawRect(0, frame.bottom + 1, width, height, paint);
-
         drawText(canvas, frame);
-
         if (resultBitmap != null) {
             // Draw the opaque result bitmap over the scanning rectangle
             paint.setAlpha(OPAQUE);
@@ -154,31 +148,17 @@ public final class QRScanView extends View {
             canvas.drawRect(frame.left, frame.top + 2, frame.left + 2, frame.bottom - 1, paint);
             canvas.drawRect(frame.right - 1, frame.top, frame.right + 1, frame.bottom - 1, paint);
             canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1, frame.bottom + 1, paint);
-
             drawAngle(canvas, frame);
             drawScanner(canvas, frame);
             if (showPossiblePoint) {
                 drawPossiblePoint(canvas, frame);
             }
-
-            // Request another update at the animation interval, but only repaint the laser line,
-            // not the entire viewfinder mask.
             postInvalidateDelayed(ANIMATION_DELAY, frame.left, frame.top, frame.right, frame.bottom);
         }
     }
 
     public void drawViewfinder() {
         resultBitmap = null;
-        invalidate();
-    }
-
-    /**
-     * Draw a bitmap with the result points highlighted instead of the live scanning display.
-     *
-     * @param barcode An image of the decoded barcode.
-     */
-    public void drawResultBitmap(Bitmap barcode) {
-        resultBitmap = barcode;
         invalidate();
     }
 

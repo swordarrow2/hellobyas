@@ -8,14 +8,14 @@ import android.widget.*;
 import com.meng.mbrowser.tools.*;
 
 public class ShowQrCodeActivity extends Activity{
-    ImageView qrcode1;
+    ImageView QRCodeImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState); 
 		setContentView(R.layout.qr_code_view);
-        qrcode1=(ImageView)findViewById(R.id.qr_code_viewImageView);
-        qrcode1.setImageBitmap(QRCode.createQRCode(getIntent().getStringExtra("url")));
+        QRCodeImageView =(ImageView)findViewById(R.id.qr_code_viewImageView);
+        QRCodeImageView.setImageBitmap(QRCode.createQRCode(getIntent().getStringExtra("url")));
 		/*     qrcode2.setImageBitmap(QRCode.createQRCodeWithLogo2("http://www.jianshu.com/users/4a4eb4feee62/latest_articles", 500, drawableToBitmap(getResources().getDrawable(R.drawable.head))));
 		 qrcode3.setImageBitmap(QRCode.createQRCodeWithLogo3("http://www.jianshu.com/users/4a4eb4feee62/latest_articles", 500, drawableToBitmap(getResources().getDrawable(R.drawable.head))));
 		 qrcode4.setImageBitmap(QRCode.createQRCodeWithLogo4("http://www.jianshu.com/users/4a4eb4feee62/latest_articles", 500, drawableToBitmap(getResources().getDrawable(R.drawable.head))));

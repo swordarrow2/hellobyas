@@ -43,7 +43,7 @@ public class MenuBar extends LinearLayout{
 				@Override
 				public boolean onLongClick(View p1){
 					// TODO: Implement this method
-					//MainActivity.instence.historyTool.clean();
+					//MainActivity.instence.historyTool.cleanCollection();
 					tool.showToast(getContext(),tool.readTextFile("/data/data/com.meng.mbrowser/history.xml","historys"));
 				//	tool.showToast(getContext(),"history cleaned");
 					return true;
@@ -65,7 +65,7 @@ public class MenuBar extends LinearLayout{
 				@Override
 				public boolean onLongClick(View p1){
 					// TODO: Implement this method
-					//MainActivity.instence.historyTool.clean();
+					//MainActivity.instence.historyTool.cleanCollection();
 					tool.showToast(getContext(),tool.readTextFile("/data/data/com.meng.mbrowser/collection.xml","collections"));
 				//	tool.showToast(getContext(),"history cleaned");
 					return true;
@@ -102,7 +102,7 @@ public class MenuBar extends LinearLayout{
                     break;
                 case R.id.menu_barButton6_addToCollection:
                     try{
-                        MainActivity.instence.collectionTool.addCollection(MainActivity.instence.topBar.getUrl());
+                        MainActivity.instence.historyAndCollectionTool.addCollection(MainActivity.instence.topBar.getUrl());
                         tool.showToast(getContext(),"已将"+MainActivity.instence.topBar.getUrl()+"添加到收藏");
                         //	MainActivity.historyTool.addHistory("http://127.0.0.1:46834/index.html");
                     }catch(Exception e){

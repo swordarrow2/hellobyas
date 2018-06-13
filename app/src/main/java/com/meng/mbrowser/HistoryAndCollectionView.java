@@ -21,7 +21,7 @@ public class HistoryAndCollectionView extends Activity{
         list=(ListView) findViewById(R.id.historyAndCollectionListView);
         if(getIntent().getBooleanExtra("isHistory",false)){
             setTitle("历史记录");
-            adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,MainActivity.instence.historyTool.getHistory());
+            adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,MainActivity.instence.historyAndCollectionTool.getHistory());
             list.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
@@ -45,7 +45,7 @@ public class HistoryAndCollectionView extends Activity{
 				});
         }else{
             setTitle("收藏");
-            adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,MainActivity.instence.collectionTool.getCollection());
+            adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,MainActivity.instence.historyAndCollectionTool.getCollection());
             list.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
@@ -69,8 +69,6 @@ public class HistoryAndCollectionView extends Activity{
 				});
         }
         list.setAdapter(adapter);
-
-
     }
 
     private void returnURL(String s){
@@ -80,12 +78,12 @@ public class HistoryAndCollectionView extends Activity{
         finish();
     }
 	private void cleanHistory(){
-		MainActivity.instence.historyTool.clean();
+		MainActivity.instence.historyAndCollectionTool.cleanHistory();
 		adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
 		list.setAdapter(adapter);
 	}
 	private void cleanCollection(){
-		MainActivity.instence.collectionTool.clean();
+		MainActivity.instence.historyAndCollectionTool.cleanCollection();
 		adapter=new ArrayAdapter<String>(HistoryAndCollectionView.this,android.R.layout.simple_list_item_1,new String[]{""});
 		list.setAdapter(adapter);
 	}

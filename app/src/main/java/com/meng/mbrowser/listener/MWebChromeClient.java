@@ -1,14 +1,21 @@
 package com.meng.mbrowser.listener;
 
-import android.app.*;
-import android.content.*;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Message;
 import android.view.View;
-import android.webkit.*;
+import android.webkit.ConsoleMessage;
+import android.webkit.GeolocationPermissions;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
+import android.webkit.PermissionRequest;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
-import com.meng.mbrowser.*;
+import com.meng.mbrowser.MainActivity;
 
 public class MWebChromeClient extends WebChromeClient {
     @Override

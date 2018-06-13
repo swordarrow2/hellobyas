@@ -104,7 +104,6 @@ public class CaptureActivity extends Activity implements Callback {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "xxxxxxxxxxxxxxxxxxxonResume");
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
@@ -128,7 +127,6 @@ public class CaptureActivity extends Activity implements Callback {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "xxxxxxxxxxxxxxxxxxxonPause");
         if (handler != null) {
             handler.quitSynchronously();
             handler = null;
@@ -177,7 +175,6 @@ public class CaptureActivity extends Activity implements Callback {
                             .show();
                 }
             } else {
-                if (BuildConfig.DEBUG) Log.e(TAG, "image path not found");
                 Toast.makeText(mActivity, "图片路径未找到", Toast.LENGTH_SHORT).show();
             }
         }
@@ -213,12 +210,6 @@ public class CaptureActivity extends Activity implements Callback {
         }
     }
 
-    /**
-     * Handler scan result
-     *
-     * @param result
-     * @param barcode
-     */
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
@@ -269,16 +260,6 @@ public class CaptureActivity extends Activity implements Callback {
                 mDialog.show();
             }
         }
-        //      if(resultString.equals("")){
-        //         Toast.makeText(CaptureActivity.this,R.string.scan_failed,Toast.LENGTH_SHORT).show();
-        //     }else{
-        //         Intent resultIntent = new Intent();
-        //         Bundle bundle = new Bundle();
-        //         bundle.putString("result",resultString);
-        //         resultIntent.putExtras(bundle);
-        //         this.setResult(RESULT_OK,resultIntent);
-        //     }
-        //    mActivity.finish();
     }
 
     protected void initView() {
@@ -320,9 +301,6 @@ public class CaptureActivity extends Activity implements Callback {
         viewfinderView = view;
     }
 
-    /**
-     * 切换散光灯状态
-     */
     public void toggleFlashLight() {
         if (flashLightOpen) {
             setFlashLightOpen(false);
@@ -331,11 +309,6 @@ public class CaptureActivity extends Activity implements Callback {
         }
     }
 
-    /**
-     * 设置闪光灯是否打开
-     *
-     * @param open
-     */
     public void setFlashLightOpen(boolean open) {
         if (flashLightOpen == open) return;
 
@@ -343,18 +316,6 @@ public class CaptureActivity extends Activity implements Callback {
         CameraManager.get().setFlashLight(open);
     }
 
-    /**
-     * 当前散光灯是否打开
-     *
-     * @return
-     */
-    public boolean isFlashLightOpen() {
-        return flashLightOpen;
-    }
-
-    /**
-     * 打开相册
-     */
     public void openGallery() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -391,7 +352,6 @@ public class CaptureActivity extends Activity implements Callback {
             hasSurface = true;
             initCamera(holder);
         }
-
     }
 
     @Override
@@ -422,14 +382,10 @@ public class CaptureActivity extends Activity implements Callback {
 
     private void initBeepSound() {
         if (playBeep && mediaPlayer == null) {
-            // The volume on STREAM_SYSTEM is not adjustable, and users found it
-            // too loud,
-            // so we now play on the music stream.
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setOnCompletionListener(beepListener);
-
             AssetFileDescriptor file = getResources().openRawResourceFd(
                     R.raw.beep);
             try {
@@ -456,9 +412,6 @@ public class CaptureActivity extends Activity implements Callback {
         }
     }
 
-    /**
-     * When the beep has finished playing, rewind to queue up another one.
-     */
     private final OnCompletionListener beepListener = new OnCompletionListener() {
         public void onCompletion(MediaPlayer mediaPlayer) {
             mediaPlayer.seekTo(0);

@@ -7,10 +7,6 @@ import android.widget.*;
 import java.io.*;
 import org.apache.http.util.*;
 
-/**
- * Created by Administrator on 2018/5/23.
- */
-
 public class tool{
     private final static String ENCODE = "utf-8";
     public static int getAndroidSdkVersion(){

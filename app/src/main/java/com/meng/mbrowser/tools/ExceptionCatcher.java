@@ -45,11 +45,9 @@ public class ExceptionCatcher implements Thread.UncaughtExceptionHandler {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                Log.e(TAG, "error : ", e);
             }
             AppManager.getAppManager().AppExit(mContext);
         }
-
     }
 
     private boolean handleException(Throwable ex) {

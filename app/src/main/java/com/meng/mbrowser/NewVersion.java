@@ -73,7 +73,6 @@ public class NewVersion extends Activity{
 		public void onClick(View arg0){
 			MainActivity.instence.webView.loadUrl(url);
 			MainActivity.instence.topBar.setUrl(url);
-			MainActivity.instence.historyTool.addHistory(url);
 			PreferenceActivity.instence.finish();
 			finish();
 		}  

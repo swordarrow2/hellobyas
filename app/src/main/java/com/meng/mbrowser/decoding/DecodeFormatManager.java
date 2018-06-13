@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.meng.mbrowser.decoding;
 
 import android.content.*;
@@ -28,7 +12,6 @@ final class DecodeFormatManager{
     static final Vector<BarcodeFormat> ONE_D_FORMATS;
     static final Vector<BarcodeFormat> QR_CODE_FORMATS;
     static final Vector<BarcodeFormat> DATA_MATRIX_FORMATS;
-    private static final Pattern COMMA_PATTERN = Pattern.compile(",");
 
     static {
         PRODUCT_FORMATS=new Vector<BarcodeFormat>(5);
@@ -52,23 +35,6 @@ final class DecodeFormatManager{
     private DecodeFormatManager(){
     }
 
-    static Vector<BarcodeFormat> parseDecodeFormats(Intent intent){
-        List<String> scanFormats = null;
-        String scanFormatsString = intent.getStringExtra(Intents.Scan.SCAN_FORMATS);
-        if(scanFormatsString!=null){
-            scanFormats=Arrays.asList(COMMA_PATTERN.split(scanFormatsString));
-        }
-        return parseDecodeFormats(scanFormats,intent.getStringExtra(Intents.Scan.MODE));
-    }
-
-    static Vector<BarcodeFormat> parseDecodeFormats(Uri inputUri){
-        List<String> formats = inputUri.getQueryParameters(Intents.Scan.SCAN_FORMATS);
-        if(formats!=null&&formats.size()==1&&formats.get(0)!=null){
-            formats=Arrays.asList(COMMA_PATTERN.split(formats.get(0)));
-        }
-        return parseDecodeFormats(formats,inputUri.getQueryParameter(Intents.Scan.MODE));
-    }
-
     private static Vector<BarcodeFormat> parseDecodeFormats(Iterable<String> scanFormats,
                                                             String decodeMode){
         if(scanFormats!=null){
@@ -79,7 +45,6 @@ final class DecodeFormatManager{
                 }
                 return formats;
             }catch(IllegalArgumentException iae){
-                // ignore it then
             }
         }
         if(decodeMode!=null){
