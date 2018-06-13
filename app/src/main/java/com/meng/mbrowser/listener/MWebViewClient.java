@@ -68,11 +68,6 @@ public class MWebViewClient extends WebViewClient{
     }
 
     @Override
-    public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-        return super.onRenderProcessGone(view, detail);
-    }
-
-    @Override
     public void onFormResubmission(WebView view, Message dontResend, Message resend) {
         super.onFormResubmission(view, dontResend, resend);
     }

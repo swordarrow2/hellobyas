@@ -12,6 +12,7 @@ import android.widget.*;
  */
 
 public class NewVersion extends Activity{
+
     TextView tv;
 
     @Override
@@ -21,8 +22,8 @@ public class NewVersion extends Activity{
         tv=(TextView) findViewById(R.id.new_version_textview);
         StringBuilder sb = new StringBuilder();
         String[] s = {
-				getString(R.string.update_content_text_2_6),
-				getString(R.string.update_content_text_2_5_1),
+			getString(R.string.update_content_text_2_6),
+			getString(R.string.update_content_text_2_5_1),
 			getString(R.string.update_content_text_2_5),
 			getString(R.string.update_content_text_2_4),
 			getString(R.string.update_content_text_2_3),
