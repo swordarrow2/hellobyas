@@ -35,7 +35,7 @@ public class HistoryAndCollectionView extends Activity{
 						}
 					}
 				});
-			btnClean.setOnClickListener(new OnClickListener(){
+			btnClean.setOnClickListener(new View.OnClickListener(){
 
 					@Override
 					public void onClick(View p1){
@@ -59,7 +59,7 @@ public class HistoryAndCollectionView extends Activity{
 						}
 					}
 				});
-			btnClean.setOnClickListener(new OnClickListener(){
+			btnClean.setOnClickListener(new View.OnClickListener(){
 
 					@Override
 					public void onClick(View p1){
