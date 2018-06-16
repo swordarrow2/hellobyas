@@ -1,7 +1,5 @@
 package com.meng.mbrowser.decoding;
 
-import com.google.zxing.qrcode.decoder.DecodeHintType;
-
 public final class Intents{
     private Intents(){
     }

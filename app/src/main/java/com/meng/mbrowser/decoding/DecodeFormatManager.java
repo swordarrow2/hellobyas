@@ -1,10 +1,7 @@
 package com.meng.mbrowser.decoding;
 
-import android.content.*;
-import android.net.*;
 import com.google.zxing.*;
 import java.util.*;
-import java.util.regex.*;
 
 final class DecodeFormatManager{
 

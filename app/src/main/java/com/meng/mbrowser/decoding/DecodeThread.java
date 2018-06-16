@@ -2,9 +2,7 @@ package com.meng.mbrowser.decoding;
 
 import android.os.*;
 import com.google.zxing.*;
-import com.google.zxing.qrcode.decoder.DecodeHintType;
-import com.meng.mbrowser.CaptureActivity;
-
+import com.meng.mbrowser.*;
 import java.util.*;
 import java.util.concurrent.*;
 

@@ -1,20 +1,13 @@
 package com.meng.mbrowser.decoding;
 
 import android.os.*;
-import android.util.*;
-
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.ReaderException;
-import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.decoder.DecodeHintType;
+import com.google.zxing.*;
+import com.google.zxing.common.*;
 import com.meng.mbrowser.*;
-import com.meng.mbrowser.camera.CameraManager;
-import com.meng.mbrowser.camera.PlanarYUVLuminanceSource;
-
-
+import com.meng.mbrowser.camera.*;
 import java.util.*;
+
+import com.meng.mbrowser.camera.PlanarYUVLuminanceSource;
 
 
 

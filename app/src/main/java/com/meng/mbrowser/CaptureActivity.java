@@ -1,59 +1,37 @@
 package com.meng.mbrowser;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Vibrator;
-import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.URLUtil;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Result;
-import com.meng.mbrowser.camera.CameraManager;
-import com.meng.mbrowser.decoding.CaptureActivityHandler;
-import com.meng.mbrowser.decoding.InactivityTimer;
-import com.meng.mbrowser.tools.ActionUtils;
-import com.meng.mbrowser.tools.QrUtils;
-import com.meng.mbrowser.view.QRScanView;
-
-import java.io.IOException;
-import java.util.Vector;
+import android.*;
+import android.app.*;
+import android.content.*;
+import android.content.pm.*;
+import android.content.res.*;
+import android.database.*;
+import android.graphics.*;
+import android.media.*;
+import android.media.MediaPlayer.*;
+import android.net.*;
+import android.os.*;
+import android.provider.*;
+import android.text.*;
+import android.util.*;
+import android.view.*;
+import android.view.SurfaceHolder.*;
+import android.webkit.*;
+import android.widget.*;
+import com.google.zxing.*;
+import com.meng.mbrowser.camera.*;
+import com.meng.mbrowser.decoding.*;
+import com.meng.mbrowser.tools.*;
+import com.meng.mbrowser.view.*;
+import java.io.*;
+import java.util.*;
 
 /**
  * Initial the camera
  *
  * @author Ryan.Tang
  */
-public class CaptureActivity extends Activity implements Callback {
+public class CaptureActivity extends Activity implements Callback{
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
@@ -83,18 +61,18 @@ public class CaptureActivity extends Activity implements Callback {
      * Called when the activity is first created.
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        mActivity = this;
-        hasSurface = false;
-        inactivityTimer = new InactivityTimer(this);
+        mActivity=this;
+        hasSurface=false;
+        inactivityTimer=new InactivityTimer(this);
         CameraManager.init(getApplication());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.CAMERA)
+			   !=PackageManager.PERMISSION_GRANTED){
                 requestPermissions(new String[]{Manifest.permission.CAMERA},
-                        REQUEST_PERMISSION_CAMERA);
+								   REQUEST_PERMISSION_CAMERA);
             }
         }
 
@@ -102,318 +80,318 @@ public class CaptureActivity extends Activity implements Callback {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume(){
         super.onResume();
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        if (hasSurface) {
+        if(hasSurface){
             initCamera(surfaceHolder);
-        } else {
+        }else{
             surfaceHolder.addCallback(this);
             surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
-        decodeFormats = null;
-        characterSet = null;
+        decodeFormats=null;
+        characterSet=null;
 
-        playBeep = true;
+        playBeep=true;
         final AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
+        if(audioService.getRingerMode()!=AudioManager.RINGER_MODE_NORMAL){
+            playBeep=false;
         }
         initBeepSound();
-        vibrate = true;
+        vibrate=true;
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause(){
         super.onPause();
-        if (handler != null) {
+        if(handler!=null){
             handler.quitSynchronously();
-            handler = null;
+            handler=null;
         }
-        if (flashIbtn != null) {
+        if(flashIbtn!=null){
             flashIbtn.setImageResource(R.drawable.ic_flash_off_white_24dp);
         }
         CameraManager.get().closeDriver();
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy(){
         inactivityTimer.shutdown();
         super.onDestroy();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK
-                && data != null
-                && requestCode == ActionUtils.PHOTO_REQUEST_GALLERY) {
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode==RESULT_OK
+		   &&data!=null
+		   &&requestCode==ActionUtils.PHOTO_REQUEST_GALLERY){
             Uri inputUri = data.getData();
             String path = null;
 
-            if (URLUtil.isFileUrl(inputUri.toString())) {
+            if(URLUtil.isFileUrl(inputUri.toString())){
                 // 小米手机直接返回的文件路径
-                path = inputUri.getPath();
-            } else {
+                path=inputUri.getPath();
+            }else{
                 String[] proj = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(inputUri, proj, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    path = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
+                Cursor cursor = getContentResolver().query(inputUri,proj,null,null,null);
+                if(cursor!=null&&cursor.moveToFirst()){
+                    path=cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
                 }
             }
-            if (!TextUtils.isEmpty(path)) {
+            if(!TextUtils.isEmpty(path)){
                 Result result = QrUtils.decodeImage(path);
-                if (result != null) {
-                    if (BuildConfig.DEBUG) Log.d(TAG, result.getText());
-                    handleDecode(result, null);
-                } else {
+                if(result!=null){
+                    if(BuildConfig.DEBUG) Log.d(TAG,result.getText());
+                    handleDecode(result,null);
+                }else{
                     new AlertDialog.Builder(CaptureActivity.this)
-                            .setTitle("提示")
-                            .setMessage("此图片无法识别")
-                            .setPositiveButton("确定", null)
-                            .show();
+						.setTitle("提示")
+						.setMessage("此图片无法识别"+path)
+						.setPositiveButton("确定",null)
+						.show();
                 }
-            } else {
-                Toast.makeText(mActivity, "图片路径未找到", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(mActivity,"图片路径未找到",Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && requestCode == REQUEST_PERMISSION_CAMERA) {
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults){
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        if(grantResults.length>0&&requestCode==REQUEST_PERMISSION_CAMERA){
+            if(grantResults[0]!=PackageManager.PERMISSION_GRANTED){
                 // 未获得Camera权限
                 new AlertDialog.Builder(mActivity)
-                        .setTitle("提示")
-                        .setMessage("请在系统设置中为App开启摄像头权限后重试")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mActivity.finish();
-                            }
-                        })
-                        .show();
+					.setTitle("提示")
+					.setMessage("请在系统设置中为App开启摄像头权限后重试")
+					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,int which){
+							mActivity.finish();
+						}
+					})
+					.show();
             }
-        } else if (grantResults.length > 0 && requestCode == REQUEST_PERMISSION_PHOTO) {
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        }else if(grantResults.length>0&&requestCode==REQUEST_PERMISSION_PHOTO){
+            if(grantResults[0]!=PackageManager.PERMISSION_GRANTED){
                 new AlertDialog.Builder(mActivity)
-                        .setTitle("提示")
-                        .setMessage("请在系统设置中为App中开启文件权限后重试")
-                        .setPositiveButton("确定", null)
-                        .show();
-            } else {
-                ActionUtils.startActivityForGallery(mActivity, ActionUtils.PHOTO_REQUEST_GALLERY);
+					.setTitle("提示")
+					.setMessage("请在系统设置中为App中开启文件权限后重试")
+					.setPositiveButton("确定",null)
+					.show();
+            }else{
+                ActionUtils.startActivityForGallery(mActivity,ActionUtils.PHOTO_REQUEST_GALLERY);
             }
         }
     }
 
-    public void handleDecode(Result result, Bitmap barcode) {
+    public void handleDecode(Result result,Bitmap barcode){
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String resultString = result.getText();
         handleResult(resultString);
     }
 
-    protected void handleResult(final String resultString) {
-        if (TextUtils.isEmpty(resultString)) {
-            Toast.makeText(this, R.string.scan_failed, Toast.LENGTH_SHORT).show();
+    protected void handleResult(final String resultString){
+        if(TextUtils.isEmpty(resultString)){
+            Toast.makeText(this,R.string.scan_failed,Toast.LENGTH_SHORT).show();
             restartPreview();
-        } else {
-            if (mDialog == null) {
-                mDialog = new AlertDialog.Builder(this)
-                        .setMessage(resultString)
-                        .setNegativeButton("确定", null)
-                        .setNeutralButton("复制文本", new AlertDialog.OnClickListener() {
+        }else{
+            if(mDialog==null){
+                mDialog=new AlertDialog.Builder(this)
+					.setMessage(resultString)
+					.setNegativeButton("确定",null)
+					.setNeutralButton("复制文本",new AlertDialog.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface p1, int p2) {
-                                // TODO: Implement this method
-                                android.content.ClipboardManager clipboardManager = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clipData = ClipData.newPlainText("text", resultString);
-                                clipboardManager.setPrimaryClip(clipData);
-                            }
-                        })
-                        .setPositiveButton("打开网址", new AlertDialog.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface p1,int p2){
+							// TODO: Implement this method
+							android.content.ClipboardManager clipboardManager = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+							ClipData clipData = ClipData.newPlainText("text",resultString);
+							clipboardManager.setPrimaryClip(clipData);
+						}
+					})
+					.setPositiveButton("打开网址",new AlertDialog.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface p1, int p2) {
-                                // TODO: Implement this method
-                                Intent i = new Intent();
-                                i.putExtra("url", resultString);
-                                setResult(RESULT_OK, i);
-                                finish();
-                            }
-                        })
-                        .create();
+						@Override
+						public void onClick(DialogInterface p1,int p2){
+							// TODO: Implement this method
+							Intent i = new Intent();
+							i.putExtra("url",resultString);
+							setResult(RESULT_OK,i);
+							finish();
+						}
+					})
+					.create();
                 mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        restartPreview();
-                    }
-                });
+						@Override
+						public void onDismiss(DialogInterface dialog){
+							restartPreview();
+						}
+					});
             }
-            if (!mDialog.isShowing()) {
+            if(!mDialog.isShowing()){
                 mDialog.setMessage(resultString);
                 mDialog.show();
             }
         }
     }
 
-    protected void initView() {
+    protected void initView(){
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.qr_camera);
 
-        backIbtn = (ImageView) findViewById(R.id.back_ibtn);
-        viewfinderView = (QRScanView) findViewById(R.id.viewfinder_view);
-        flashIbtn = (ImageButton) findViewById(R.id.flash_ibtn);
-        galleryTv = (TextView) findViewById(R.id.gallery_tv);
+        backIbtn=(ImageView) findViewById(R.id.back_ibtn);
+        viewfinderView=(QRScanView) findViewById(R.id.viewfinder_view);
+        flashIbtn=(ImageButton) findViewById(R.id.flash_ibtn);
+        galleryTv=(TextView) findViewById(R.id.gallery_tv);
 
         backIbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mActivity.finish();
-            }
-        });
+				@Override
+				public void onClick(View v){
+					mActivity.finish();
+				}
+			});
         flashIbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (flashLightOpen) {
-                    flashIbtn.setImageResource(R.drawable.ic_flash_off_white_24dp);
-                } else {
-                    flashIbtn.setImageResource(R.drawable.ic_flash_on_white_24dp);
-                }
-                toggleFlashLight();
-            }
-        });
+				@Override
+				public void onClick(View v){
+					if(flashLightOpen){
+						flashIbtn.setImageResource(R.drawable.ic_flash_off_white_24dp);
+					}else{
+						flashIbtn.setImageResource(R.drawable.ic_flash_on_white_24dp);
+					}
+					toggleFlashLight();
+				}
+			});
         galleryTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
+				@Override
+				public void onClick(View v){
+					openGallery();
+				}
+			});
     }
 
-    protected void setViewfinderView(QRScanView view) {
-        viewfinderView = view;
+    protected void setViewfinderView(QRScanView view){
+        viewfinderView=view;
     }
 
-    public void toggleFlashLight() {
-        if (flashLightOpen) {
+    public void toggleFlashLight(){
+        if(flashLightOpen){
             setFlashLightOpen(false);
-        } else {
+        }else{
             setFlashLightOpen(true);
         }
     }
 
-    public void setFlashLightOpen(boolean open) {
-        if (flashLightOpen == open) return;
+    public void setFlashLightOpen(boolean open){
+        if(flashLightOpen==open) return;
 
-        flashLightOpen = !flashLightOpen;
+        flashLightOpen=!flashLightOpen;
         CameraManager.get().setFlashLight(open);
     }
 
-    public void openGallery() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+    public void openGallery(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M
+		   &&checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+		   !=PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    REQUEST_PERMISSION_PHOTO);
-        } else {
-            ActionUtils.startActivityForGallery(mActivity, ActionUtils.PHOTO_REQUEST_GALLERY);
+							   REQUEST_PERMISSION_PHOTO);
+        }else{
+            ActionUtils.startActivityForGallery(mActivity,ActionUtils.PHOTO_REQUEST_GALLERY);
         }
     }
 
-    private void initCamera(SurfaceHolder surfaceHolder) {
-        try {
+    private void initCamera(SurfaceHolder surfaceHolder){
+        try{
             CameraManager.get().openDriver(surfaceHolder);
-        } catch (IOException ioe) {
+        }catch(IOException ioe){
             return;
-        } catch (RuntimeException e) {
+        }catch(RuntimeException e){
             return;
         }
-        if (handler == null) {
-            handler = new CaptureActivityHandler(this, decodeFormats,
-                    characterSet);
+        if(handler==null){
+            handler=new CaptureActivityHandler(this,decodeFormats,
+											   characterSet);
         }
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format,
-                               int width, int height) {
+    public void surfaceChanged(SurfaceHolder holder,int format,
+                               int width,int height){
     }
 
     @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        if (!hasSurface) {
-            hasSurface = true;
+    public void surfaceCreated(SurfaceHolder holder){
+        if(!hasSurface){
+            hasSurface=true;
             initCamera(holder);
         }
     }
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        hasSurface = false;
+    public void surfaceDestroyed(SurfaceHolder holder){
+        hasSurface=false;
     }
 
-    public QRScanView getViewfinderView() {
+    public QRScanView getViewfinderView(){
         return viewfinderView;
     }
 
-    public Handler getHandler() {
+    public Handler getHandler(){
         return handler;
     }
 
-    public void drawViewfinder() {
+    public void drawViewfinder(){
         viewfinderView.drawViewfinder();
     }
 
-    protected void restartPreview() {
+    protected void restartPreview(){
         // 当界面跳转时 handler 可能为null
-        if (handler != null) {
+        if(handler!=null){
             Message restartMessage = Message.obtain();
-            restartMessage.what = R.id.restart_preview;
+            restartMessage.what=R.id.restart_preview;
             handler.handleMessage(restartMessage);
         }
     }
 
-    private void initBeepSound() {
-        if (playBeep && mediaPlayer == null) {
+    private void initBeepSound(){
+        if(playBeep&&mediaPlayer==null){
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            mediaPlayer = new MediaPlayer();
+            mediaPlayer=new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setOnCompletionListener(beepListener);
             AssetFileDescriptor file = getResources().openRawResourceFd(
-                    R.raw.beep);
-            try {
+				R.raw.beep);
+            try{
                 mediaPlayer.setDataSource(file.getFileDescriptor(),
-                        file.getStartOffset(), file.getLength());
+										  file.getStartOffset(),file.getLength());
                 file.close();
-                mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
+                mediaPlayer.setVolume(BEEP_VOLUME,BEEP_VOLUME);
                 mediaPlayer.prepare();
-            } catch (IOException e) {
-                mediaPlayer = null;
+            }catch(IOException e){
+                mediaPlayer=null;
             }
         }
     }
 
     private static final long VIBRATE_DURATION = 200L;
 
-    private void playBeepSoundAndVibrate() {
-        if (playBeep && mediaPlayer != null) {
+    private void playBeepSoundAndVibrate(){
+        if(playBeep&&mediaPlayer!=null){
             mediaPlayer.start();
         }
-        if (vibrate) {
+        if(vibrate){
             Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             vibrator.vibrate(VIBRATE_DURATION);
         }
     }
 
     private final OnCompletionListener beepListener = new OnCompletionListener() {
-        public void onCompletion(MediaPlayer mediaPlayer) {
+        public void onCompletion(MediaPlayer mediaPlayer){
             mediaPlayer.seekTo(0);
         }
     };
